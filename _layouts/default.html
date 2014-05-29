@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Connor McCoy</title>
+<title>{{ page.title }}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="Connor McCoy">
@@ -41,23 +41,9 @@ h2 {
 <div class="container documents">
   <div class="row">
     <div class="col-md-6">
-      <h1>Connor McCoy</h1>
-      <p>
-      I'm a programmer in <a href="http://matsen.fhcrc.org">Erick Matsen</a>'s group, part of the <a href="http://www.fhcrc.org">Fred Hutchinson Cancer Research Center</a> <a href="http://research.fhcrc.org/computational-biology/en.html">Computational Biology program</a>.
-      We work on developing and applying statistical methodologies for evolutionary inference using high-throughput sequencing data, with applications in immunology, virology, and metagenomics.
-      </p>
+      <h1>{{ page.title }}</h1>
 
-      <p>
-      My published work is on <a href="http://scholar.google.com/citations?sortby=pubdate&hl=en&user=ZqPTdFoAAAAJ&view_op=list_works">Google Scholar</a>.
-      </p>
-
-      <p>
-      Software I've written is on GitHub under <a href="http://github.com/cmccoy">@cmccoy</a> or <a href="http://github.com/fhcrc">@fhcrc</a>.
-      </p>
-
-      <p>
-      Occasionally I tweet as <a href="http://twitter.com/connoromccoy">@connoromccoy</a>.
-      </p>
+      {{ content }}
     </div>
   </div>
 </div>
