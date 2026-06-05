@@ -20,7 +20,7 @@ Local builds need a modern Ruby (see `.ruby-version`); macOS system Ruby is too 
 
 ## Deployment
 
-Pushing to `master` triggers the GitHub Actions workflow in
+Pushing to `main` triggers the GitHub Actions workflow in
 `.github/workflows/jekyll.yml`, which builds with Jekyll and deploys to GitHub Pages
 (`actions/upload-pages-artifact` + `actions/deploy-pages`). The Pages source is set to
 "GitHub Actions" (not "deploy from a branch"). There is no separate deploy step.

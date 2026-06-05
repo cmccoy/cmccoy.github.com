@@ -5,7 +5,7 @@ site published with GitHub Pages at [www.cmccoy.us](https://www.cmccoy.us).
 
 ## Edit the content
 
-The page text lives in [`index.md`](index.md). Edit it, commit, and push to `master` —
+The page text lives in [`index.md`](index.md). Edit it, commit, and push to `main` —
 GitHub Actions rebuilds and deploys automatically (see `.github/workflows/jekyll.yml`).
 
 ## Preview locally
