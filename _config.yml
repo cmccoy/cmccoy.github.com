@@ -1,4 +1,7 @@
-theme: minima
+title: Connor McCoy
+description: Personal site of Connor McCoy, Principal Software Engineer.
+url: https://www.cmccoy.us
+
 markdown: kramdown
 highlighter: rouge
 
@@ -6,5 +9,6 @@ kramdown:
   input: GFM
 
 exclude:
-  - Gemfile
-  - Gemfile.lock
+  - README.md
+  - CLAUDE.md
+  - vendor

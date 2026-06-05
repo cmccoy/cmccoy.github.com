@@ -1,2 +1,4 @@
-source 'http://rubygems.org'
-gem 'github-pages'
+source 'https://rubygems.org'
+
+gem 'jekyll', '~> 4.3'
+gem 'webrick', '~> 1.8' # required for `jekyll serve` on Ruby 3.x
