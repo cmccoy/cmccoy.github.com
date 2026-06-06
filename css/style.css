@@ -1,23 +1,25 @@
-/* Minimal stylesheet for cmccoy.us — single-page personal site. */
-
 :root {
-  --fg: #1a1a1a;
-  --bg: #fdfdfd;
-  --muted: #555;
-  --link: #1a6eff;
+  --fg: #1c1b18;
+  --bg: #f8f5f0;
+  --muted: #6b6760;
+  --link: #1c1b18;
+  --link-underline: #c8b99a;
+  --link-underline-hover: #8c7a60;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --fg: #e8e8e8;
-    --bg: #16181c;
-    --muted: #9aa0a6;
-    --link: #5b9dff;
+    --fg: #ede9e2;
+    --bg: #171613;
+    --muted: #8a8680;
+    --link: #ede9e2;
+    --link-underline: #4a4540;
+    --link-underline-hover: #7a7060;
   }
 }
 
 html {
-  font-size: 18px;
+  font-size: 17px;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -25,42 +27,59 @@ body {
   margin: 0;
   color: var(--fg);
   background: var(--bg);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif;
-  line-height: 1.6;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Helvetica, Arial, sans-serif;
+  font-optical-sizing: auto;
+  line-height: 1.65;
+  font-weight: 350;
+  -webkit-font-smoothing: antialiased;
 }
 
 main {
-  max-width: 38rem;
+  max-width: 36rem;
   margin: 0 auto;
-  padding: 4rem 1.25rem 6rem;
+  padding: 5rem 1.5rem 7rem;
 }
 
 h1 {
-  font-size: 1.9rem;
-  font-weight: 600;
+  font-size: 1.65rem;
+  font-weight: 450;
+  letter-spacing: -0.02em;
   line-height: 1.2;
-  margin: 0 0 1.5rem;
+  margin: 0 0 2rem;
+  color: var(--fg);
 }
 
 p {
   margin: 0 0 1.1rem;
+  color: var(--fg);
 }
 
 a {
   color: var(--link);
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-color: var(--link-underline);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color 0.15s ease;
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration-color: var(--link-underline-hover);
 }
 
 ul {
-  padding-left: 1.2rem;
+  list-style: none;
+  padding: 0;
   margin: 1.5rem 0 0;
 }
 
 li {
-  margin: 0.3rem 0;
+  margin: 0.4rem 0;
+}
+
+li a::after {
+  content: " ↗";
+  font-size: 0.8em;
+  opacity: 0.5;
 }
