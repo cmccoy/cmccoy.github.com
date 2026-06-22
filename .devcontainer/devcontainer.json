@@ -1,0 +1,23 @@
+{
+  "name": "cmccoy.github.com (Jekyll)",
+  // Ruby 4.0 — kept in lockstep with .ruby-version and the deploy workflow (ruby/setup-ruby)
+  "image": "mcr.microsoft.com/devcontainers/ruby:4.0",
+
+  // 4000 = `jekyll serve`, 35729 = LiveReload
+  "forwardPorts": [4000, 35729],
+  "portsAttributes": {
+    "4000": { "label": "Jekyll site", "onAutoForward": "openPreview" }
+  },
+
+  // Install gems inside the container (isolated from the host Ruby/gemset)
+  "postCreateCommand": "bundle install",
+
+  // Auto-serve the site with live reload when you attach. Remove if you'd rather start it manually.
+  "postAttachCommand": "bundle exec jekyll serve --host 0.0.0.0 --livereload",
+
+  "customizations": {
+    "vscode": {
+      "extensions": ["Shopify.ruby-lsp"]
+    }
+  }
+}

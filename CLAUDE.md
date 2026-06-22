@@ -16,7 +16,14 @@ bundle exec jekyll serve    # local preview at http://localhost:4000 with live r
 bundle exec jekyll build    # render static site into _site/ (gitignored)
 ```
 
-Local builds need a modern Ruby (see `.ruby-version`); macOS system Ruby is too old.
+Local builds need a modern Ruby (see `.ruby-version`, currently `4.0`); macOS system
+Ruby is too old. The easiest isolated option is the devcontainer
+(`.devcontainer/devcontainer.json`) — "Reopen in Container" in VS Code or open in
+Codespaces; it runs `bundle install` and serves on port 4000 in a Ruby 4.0 container, so
+no host Ruby is touched. Its image tag and `.ruby-version` are kept in lockstep with the
+deploy workflow's `ruby/setup-ruby`. Note: open the devcontainer from a normal clone, not
+a `git worktree` (a worktree's `.git` lives outside the mount and breaks git inside the
+container).
 
 ## Deployment
 
