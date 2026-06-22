@@ -10,7 +10,18 @@ GitHub Actions rebuilds and deploys automatically (see `.github/workflows/jekyll
 
 ## Preview locally
 
-Requires Ruby (see [`.ruby-version`](.ruby-version)).
+### Devcontainer (easiest)
+
+Open in VS Code and choose **Reopen in Container**, or open in
+[GitHub Codespaces](https://codespaces.new/cmccoy/cmccoy.github.com). The container
+installs gems and starts `jekyll serve` automatically on port 4000.
+
+> **Note:** open from a normal clone, not a `git worktree` — a worktree's `.git` lives
+> outside the container mount and breaks git inside.
+
+### Host Ruby
+
+Requires Ruby 4.0 (see [`.ruby-version`](.ruby-version); macOS system Ruby is too old).
 
 ```bash
 bundle install
@@ -19,7 +30,7 @@ bundle exec jekyll serve   # http://localhost:4000, with live reload
 
 ## Layout
 
-- `index.md` — the home page content.
+- `index.md` — home page content.
 - `_layouts/default.html` — the single page template.
-- `css/style.css` — the (small, hand-written) stylesheet.
-- `CNAME` — the custom domain. Leave it in place.
+- `css/style.css` — small, hand-written stylesheet.
+- `CNAME` — custom domain; leave it in place.
