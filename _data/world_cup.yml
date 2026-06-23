@@ -1,0 +1,169 @@
+# World Cup 2026 watchability ratings.
+# Spoiler-free: ratings reflect tension/drama only, never who won or any score.
+# rating must be one of the keys in `ratings` below.
+ratings:
+  must:
+    emoji: "🍿"
+    label: "Must Watch"
+  look:
+    emoji: "👀"
+    label: "Worth a Look"
+  skip:
+    emoji: "💤"
+    label: "Skip"
+
+through: "21 June 2026"
+
+days:
+  - date: "21 June"
+    matches:
+      - teams: "Spain vs Saudi Arabia"
+        rating: skip
+        note: "settled well before the finish."
+      - teams: "Belgium vs Iran"
+        rating: look
+        note: "a disciplined, low-event tug-of-war."
+      - teams: "Uruguay vs Cape Verde"
+        rating: must
+        note: "refused to die; drama right to the end."
+      - teams: "New Zealand vs Egypt"
+        rating: look
+        note: "a contest for a while."
+
+  - date: "20 June"
+    matches:
+      - teams: "Netherlands vs Sweden"
+        rating: skip
+        note: "one-sided throughout."
+      - teams: "Germany vs Ivory Coast"
+        rating: must
+        note: "knife-edge all night, resolved at the death."
+      - teams: "Ecuador vs Curaçao"
+        rating: look
+        note: "a watchful, evenly poised draw."
+      - teams: "Japan vs Tunisia"
+        rating: skip
+        note: "comfortable from early on."
+
+  - date: "19 June"
+    matches:
+      - teams: "United States vs Australia"
+        rating: look
+        note: "controlled but never comfortable."
+      - teams: "Scotland vs Morocco"
+        rating: look
+        note: "a single moment told the story."
+      - teams: "Brazil vs Haiti"
+        rating: skip
+        note: "the result was never in doubt."
+      - teams: "Türkiye vs Paraguay"
+        rating: look
+        note: "tight and tense throughout."
+
+  - date: "18 June"
+    matches:
+      - teams: "Czechia vs South Africa"
+        rating: look
+        note: "locked together to the finish."
+      - teams: "Switzerland vs Bosnia and Herzegovina"
+        rating: skip
+        note: "comfortable from early on."
+      - teams: "Canada vs Qatar"
+        rating: skip
+        note: "one-sided and over early."
+      - teams: "Mexico vs South Korea"
+        rating: look
+        note: "decided by the slimmest of edges."
+
+  - date: "17 June"
+    matches:
+      - teams: "Portugal vs DR Congo"
+        rating: look
+        note: "closer than the names suggest."
+      - teams: "England vs Croatia"
+        rating: must
+        note: "wide open and frantic from start to finish."
+      - teams: "Ghana vs Panama"
+        rating: look
+        note: "taut and finely poised."
+      - teams: "Uzbekistan vs Colombia"
+        rating: look
+        note: "competitive in spells."
+
+  - date: "16 June"
+    matches:
+      - teams: "France vs Senegal"
+        rating: look
+        note: "a contest before it tilted."
+      - teams: "Iraq vs Norway"
+        rating: skip
+        note: "settled well before the finish."
+      - teams: "Argentina vs Algeria"
+        rating: skip
+        note: "one-sided throughout."
+      - teams: "Austria vs Jordan"
+        rating: look
+        note: "lively without ever running away."
+
+  - date: "15 June"
+    matches:
+      - teams: "Spain vs Cape Verde"
+        rating: look
+        note: "a patient, chess-like stalemate."
+      - teams: "Belgium vs Egypt"
+        rating: look
+        note: "well balanced, end to end in patches."
+      - teams: "Saudi Arabia vs Uruguay"
+        rating: look
+        note: "a stubborn, hard-earned deadlock."
+      - teams: "Iran vs New Zealand"
+        rating: must
+        note: "traded blows throughout; momentum kept flipping."
+
+  - date: "14 June"
+    matches:
+      - teams: "Germany vs Curaçao"
+        rating: skip
+        note: "the result was never in doubt."
+      - teams: "Netherlands vs Japan"
+        rating: must
+        note: "a genuine roller-coaster with a sting in the tail."
+      - teams: "Ivory Coast vs Ecuador"
+        rating: look
+        note: "a single moment separated them."
+      - teams: "Sweden vs Tunisia"
+        rating: skip
+        note: "comfortable from early on."
+
+  - date: "13 June"
+    matches:
+      - teams: "Qatar vs Switzerland"
+        rating: look
+        note: "a tight, cagey affair."
+      - teams: "Brazil vs Morocco"
+        rating: must
+        note: "heavyweight billing, decided by the finest of margins."
+      - teams: "Haiti vs Scotland"
+        rating: look
+        note: "short on flair, long on grit."
+      - teams: "Australia vs Türkiye"
+        rating: look
+        note: "scrappy and closely fought."
+
+  - date: "12 June"
+    matches:
+      - teams: "Canada vs Bosnia and Herzegovina"
+        rating: look
+        note: "evenly matched, neither side blinking."
+      - teams: "United States vs Paraguay"
+        rating: skip
+        note: "one-sided and over early."
+
+  - date: "11 June"
+    matches:
+      - teams: "Mexico vs South Africa"
+        rating: look
+        note: "opening-night nerves, kept honest throughout."
+      - teams: "South Korea vs Czechia"
+        rating: must
+        note: "nip-and-tuck from the opening day; never settled."

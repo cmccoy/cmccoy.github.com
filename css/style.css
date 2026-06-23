@@ -99,3 +99,138 @@ li a::after {
 .icon-link:hover {
   opacity: 1;
 }
+
+/* ---- World Cup watchability guide ---- */
+
+.wc-asof {
+  color: var(--muted);
+  font-style: italic;
+  font-size: 0.95rem;
+}
+
+.wc-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+  margin: 1.75rem 0 0.5rem;
+  position: sticky;
+  top: 0;
+  padding: 0.85rem 0;
+  background: var(--bg);
+  z-index: 1;
+}
+
+.wc-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.wc-filter {
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--link-underline);
+  border-radius: 999px;
+  padding: 0.25rem 0.7rem;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.wc-filter:hover {
+  border-color: var(--link-underline-hover);
+}
+
+.wc-filter.is-on {
+  color: var(--fg);
+  border-color: var(--link-underline-hover);
+  background: color-mix(in srgb, var(--link-underline) 22%, transparent);
+}
+
+.wc-filter:not(.is-on) {
+  opacity: 0.55;
+}
+
+.wc-filter .wc-rating {
+  margin-right: 0.15rem;
+}
+
+.wc-search {
+  font: inherit;
+  font-size: 0.9rem;
+  flex: 1 1 9rem;
+  min-width: 8rem;
+  color: var(--fg);
+  background: transparent;
+  border: 1px solid var(--link-underline);
+  border-radius: 999px;
+  padding: 0.25rem 0.8rem;
+}
+
+.wc-search::placeholder {
+  color: var(--muted);
+}
+
+.wc-search:focus,
+.wc-filter:focus-visible,
+.wc-search:focus-visible {
+  outline: 2px solid var(--link-underline-hover);
+  outline-offset: 1px;
+}
+
+.wc-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.wc-day h2 {
+  font-size: 1.05rem;
+  font-weight: 450;
+  margin: 1.75rem 0 0.4rem;
+}
+
+ul.wc-matches {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.wc-match {
+  display: grid;
+  grid-template-columns: 1.5rem 1fr;
+  gap: 0.1rem 0.5rem;
+  align-items: baseline;
+  margin: 0.5rem 0;
+}
+
+.wc-match .wc-rating {
+  grid-row: 1 / span 2;
+  font-size: 1.05rem;
+}
+
+.wc-teams {
+  font-weight: 450;
+}
+
+.wc-note {
+  color: var(--muted);
+  grid-column: 2;
+}
+
+.wc-empty {
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* The site adds " ↗" after links in list items; matches have no links, but
+   guard against any stray decoration from the global li rule. */
+.wc-match a::after {
+  content: none;
+}
