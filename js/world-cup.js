@@ -22,6 +22,50 @@ if (dataEl && mount) {
   const sidesOf = (teams) =>
     teams.split(" vs ").map((name) => ({ flag: flags[name] || "", name }));
 
+  // Kickoffs are stored as absolute instants (the `kickoff` field is ISO 8601
+  // with the venue's UTC offset), so we can render them in the viewer's own
+  // time zone. The no-JS fallback shows Pacific; this enhanced view localises.
+  const timeFmt = new Intl.DateTimeFormat([], {
+    hour: "numeric",
+    minute: "2-digit",
+  });
+  const localDateFmt = new Intl.DateTimeFormat([], {
+    month: "short",
+    day: "numeric",
+  });
+  // Day sections are grouped by Pacific date, so we flag any kickoff whose
+  // local date differs (a late game that rolls past midnight for the viewer).
+  const ptDateFmt = new Intl.DateTimeFormat([], {
+    month: "short",
+    day: "numeric",
+    timeZone: "America/Los_Angeles",
+  });
+
+  // Short label for the viewer's zone (e.g. "PDT", "GMT+9"), derived from a
+  // real kickoff so it reflects that date's DST state.
+  const sampleKickoff = data.days
+    .flatMap((d) => d.matches)
+    .map((m) => m.kickoff)
+    .find(Boolean);
+  const zoneLabel = (() => {
+    if (!sampleKickoff) return "local time";
+    const part = new Intl.DateTimeFormat([], { timeZoneName: "short" })
+      .formatToParts(new Date(sampleKickoff))
+      .find((p) => p.type === "timeZoneName");
+    return part ? part.value : "local time";
+  })();
+
+  // Local kickoff time; appends the local date only when it differs from the
+  // Pacific date the match is grouped under.
+  const localKickoff = (m) => {
+    if (!m.kickoff) return "";
+    const d = new Date(m.kickoff);
+    const time = timeFmt.format(d);
+    return localDateFmt.format(d) === ptDateFmt.format(d)
+      ? time
+      : `${time} (${localDateFmt.format(d)})`;
+  };
+
   function App() {
     // All ratings visible by default.
     const [active, setActive] = useState(() => new Set(ratingOrder));
@@ -42,11 +86,14 @@ if (dataEl && mount) {
       return data.days
         .map((day) => ({
           ...day,
-          matches: day.matches.filter(
-            (m) =>
-              active.has(m.rating) &&
-              (needle === "" || m.teams.toLowerCase().includes(needle)),
-          ),
+          matches: day.matches
+            .filter(
+              (m) =>
+                active.has(m.rating) &&
+                (needle === "" || m.teams.toLowerCase().includes(needle)),
+            )
+            // Earliest kickoff first within each day.
+            .sort((a, b) => (Date.parse(a.kickoff) || 0) - (Date.parse(b.kickoff) || 0)),
         }))
         .filter((day) => day.matches.length > 0);
     }, [active, needle]);
@@ -87,27 +134,41 @@ if (dataEl && mount) {
             (day) => html`
               <section class="wc-day" key=${day.date}>
                 <h2>${day.date}</h2>
-                <ul class="wc-matches">
-                  ${day.matches.map(
-                    (m) => html`
-                      <li class="wc-match" key=${m.teams}>
-                        <span class="wc-rating" title=${data.ratings[m.rating].label}
-                          >${data.ratings[m.rating].emoji}</span
-                        >
-                        <span class="wc-teams"
-                          >${sidesOf(m.teams).map(
-                            (s, i) => html`${i > 0 ? " vs " : ""}<span
-                                class="wc-flag"
-                                aria-hidden="true"
-                                >${s.flag}</span
-                              > ${s.name}`,
-                          )}</span
-                        >
-                        <span class="wc-note">— ${m.note}</span>
-                      </li>
-                    `,
-                  )}
-                </ul>
+                <table class="wc-table">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="wc-col-time">Time (${zoneLabel})</th>
+                      <th scope="col" class="wc-col-rating">Rating</th>
+                      <th scope="col">Match</th>
+                      <th scope="col">Note</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${day.matches.map(
+                      (m) => html`
+                        <tr class="wc-match" key=${m.teams}>
+                          <td class="wc-time">${localKickoff(m)}</td>
+                          <td
+                            class="wc-rating"
+                            title=${data.ratings[m.rating].label}
+                          >
+                            ${data.ratings[m.rating].emoji}
+                          </td>
+                          <td class="wc-teams">
+                            ${sidesOf(m.teams).map(
+                              (s, i) => html`${i > 0 ? " vs " : ""}<span
+                                  class="wc-flag"
+                                  aria-hidden="true"
+                                  >${s.flag}</span
+                                > ${s.name}`,
+                            )}
+                          </td>
+                          <td class="wc-note">${m.note}</td>
+                        </tr>
+                      `,
+                    )}
+                  </tbody>
+                </table>
               </section>
             `,
           )}

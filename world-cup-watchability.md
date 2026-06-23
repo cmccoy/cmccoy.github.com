@@ -19,9 +19,12 @@ reclaim your evenings from the rest.
 {% for day in site.data.world_cup.days %}
 <section class="wc-day">
 <h2>{{ day.date }}</h2>
-<ul class="wc-matches">
-{% for m in day.matches %}{% assign r = site.data.world_cup.ratings[m.rating] %}{% assign sides = m.teams | split: " vs " %}<li class="wc-match"><span class="wc-rating" title="{{ r.label }}">{{ r.emoji }}</span> <span class="wc-teams">{% for s in sides %}{% unless forloop.first %} vs {% endunless %}<span class="wc-flag" aria-hidden="true">{{ site.data.world_cup.flags[s] }}</span> {{ s }}{% endfor %}</span> <span class="wc-note">— {{ m.note }}</span></li>
-{% endfor %}</ul>
+<table class="wc-table">
+<thead><tr><th scope="col" class="wc-col-time">Time (PT)</th><th scope="col" class="wc-col-rating">Rating</th><th scope="col">Match</th><th scope="col">Note</th></tr></thead>
+<tbody>
+{% comment %} Matches are authored in kickoff order within each day. Pacific time is derived from the absolute `kickoff` instant: format to epoch seconds (UTC) first, then re-format so Time.at renders it in the site's configured timezone. {% endcomment %}{% for m in day.matches %}{% assign r = site.data.world_cup.ratings[m.rating] %}{% assign sides = m.teams | split: " vs " %}{% assign epoch = m.kickoff | date: "%s" %}<tr class="wc-match"><td class="wc-time">{{ epoch | date: "%-I:%M %p" }}</td><td class="wc-rating" title="{{ r.label }}">{{ r.emoji }}</td><td class="wc-teams">{% for s in sides %}{% unless forloop.first %} vs {% endunless %}<span class="wc-flag" aria-hidden="true">{{ site.data.world_cup.flags[s] }}</span> {{ s }}{% endfor %}</td><td class="wc-note">{{ m.note }}</td></tr>
+{% endfor %}</tbody>
+</table>
 </section>
 {% endfor %}
 </div>

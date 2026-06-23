@@ -73,172 +73,217 @@ days:
     matches:
       - teams: "Portugal vs Uzbekistan"
         rating: look
+        kickoff: "2026-06-23T12:00:00-05:00"
         note: "broke the deadlock early and held firm; nerves never fully settled."
 
   - date: "22 June"
     matches:
       - teams: "Argentina vs Austria"
         rating: skip
+        kickoff: "2026-06-22T12:00:00-05:00"
         note: "settled early; the result was rarely in question."
       - teams: "France vs Iraq"
         rating: skip
+        kickoff: "2026-06-22T17:00:00-04:00"
         note: "France in control throughout; never truly tested."
       - teams: "Norway vs Senegal"
         rating: look
+        kickoff: "2026-06-22T20:00:00-04:00"
         note: "tight on the scoreboard; the keeper kept the margin slender."
       - teams: "Jordan vs Algeria"
         rating: look
+        kickoff: "2026-06-22T20:00:00-07:00"
         note: "both sides needed a win; a tense stalemate that served neither."
 
   - date: "21 June"
     matches:
       - teams: "Spain vs Saudi Arabia"
         rating: skip
+        kickoff: "2026-06-21T12:00:00-04:00"
         note: "settled well before the finish."
       - teams: "Belgium vs Iran"
         rating: look
+        kickoff: "2026-06-21T12:00:00-07:00"
         note: "a disciplined, low-event tug-of-war."
       - teams: "Uruguay vs Cape Verde"
         rating: must
+        kickoff: "2026-06-21T18:00:00-04:00"
         note: "refused to die; drama right to the end."
       - teams: "New Zealand vs Egypt"
         rating: look
+        kickoff: "2026-06-21T18:00:00-07:00"
         note: "a contest for a while."
 
   - date: "20 June"
     matches:
       - teams: "Netherlands vs Sweden"
         rating: skip
+        kickoff: "2026-06-20T12:00:00-05:00"
         note: "one-sided throughout."
       - teams: "Germany vs Ivory Coast"
         rating: must
+        kickoff: "2026-06-20T16:00:00-04:00"
         note: "knife-edge all night, resolved at the death."
       - teams: "Ecuador vs Curaçao"
         rating: look
+        kickoff: "2026-06-20T19:00:00-05:00"
         note: "a watchful, evenly poised draw."
       - teams: "Japan vs Tunisia"
         rating: skip
+        kickoff: "2026-06-20T22:00:00-06:00"
         note: "comfortable from early on."
 
   - date: "19 June"
     matches:
       - teams: "United States vs Australia"
         rating: look
+        kickoff: "2026-06-19T12:00:00-07:00"
         note: "controlled but never comfortable."
       - teams: "Scotland vs Morocco"
         rating: look
+        kickoff: "2026-06-19T18:00:00-04:00"
         note: "a single moment told the story."
       - teams: "Brazil vs Haiti"
         rating: skip
+        kickoff: "2026-06-19T20:30:00-04:00"
         note: "the result was never in doubt."
       - teams: "Türkiye vs Paraguay"
         rating: look
+        kickoff: "2026-06-19T20:00:00-07:00"
         note: "tight and tense throughout."
 
   - date: "18 June"
     matches:
       - teams: "Czechia vs South Africa"
         rating: look
+        kickoff: "2026-06-18T12:00:00-04:00"
         note: "locked together to the finish."
       - teams: "Switzerland vs Bosnia and Herzegovina"
         rating: skip
+        kickoff: "2026-06-18T12:00:00-07:00"
         note: "comfortable from early on."
       - teams: "Canada vs Qatar"
         rating: skip
+        kickoff: "2026-06-18T15:00:00-07:00"
         note: "one-sided and over early."
       - teams: "Mexico vs South Korea"
         rating: look
+        kickoff: "2026-06-18T19:00:00-06:00"
         note: "decided by the slimmest of edges."
 
   - date: "17 June"
     matches:
       - teams: "Portugal vs DR Congo"
         rating: look
+        kickoff: "2026-06-17T12:00:00-05:00"
         note: "closer than the names suggest."
       - teams: "England vs Croatia"
         rating: must
+        kickoff: "2026-06-17T15:00:00-05:00"
         note: "wide open and frantic from start to finish."
       - teams: "Ghana vs Panama"
         rating: look
+        kickoff: "2026-06-17T19:00:00-04:00"
         note: "taut and finely poised."
       - teams: "Uzbekistan vs Colombia"
         rating: look
+        kickoff: "2026-06-17T20:00:00-06:00"
         note: "competitive in spells."
 
   - date: "16 June"
     matches:
       - teams: "France vs Senegal"
         rating: look
+        kickoff: "2026-06-16T15:00:00-04:00"
         note: "a contest before it tilted."
       - teams: "Iraq vs Norway"
         rating: skip
+        kickoff: "2026-06-16T18:00:00-04:00"
         note: "settled well before the finish."
       - teams: "Argentina vs Algeria"
         rating: skip
+        kickoff: "2026-06-16T20:00:00-05:00"
         note: "one-sided throughout."
       - teams: "Austria vs Jordan"
         rating: look
+        kickoff: "2026-06-16T21:00:00-07:00"
         note: "lively without ever running away."
 
   - date: "15 June"
     matches:
       - teams: "Spain vs Cape Verde"
         rating: look
+        kickoff: "2026-06-15T12:00:00-04:00"
         note: "a patient, chess-like stalemate."
       - teams: "Belgium vs Egypt"
         rating: look
+        kickoff: "2026-06-15T12:00:00-07:00"
         note: "well balanced, end to end in patches."
       - teams: "Saudi Arabia vs Uruguay"
         rating: look
+        kickoff: "2026-06-15T18:00:00-04:00"
         note: "a stubborn, hard-earned deadlock."
       - teams: "Iran vs New Zealand"
         rating: must
+        kickoff: "2026-06-15T18:00:00-07:00"
         note: "traded blows throughout; momentum kept flipping."
 
   - date: "14 June"
     matches:
       - teams: "Germany vs Curaçao"
         rating: skip
+        kickoff: "2026-06-14T12:00:00-05:00"
         note: "the result was never in doubt."
       - teams: "Netherlands vs Japan"
         rating: must
+        kickoff: "2026-06-14T15:00:00-05:00"
         note: "a genuine roller-coaster with a sting in the tail."
       - teams: "Ivory Coast vs Ecuador"
         rating: look
+        kickoff: "2026-06-14T19:00:00-04:00"
         note: "a single moment separated them."
       - teams: "Sweden vs Tunisia"
         rating: skip
+        kickoff: "2026-06-14T20:00:00-06:00"
         note: "comfortable from early on."
 
   - date: "13 June"
     matches:
       - teams: "Qatar vs Switzerland"
         rating: look
+        kickoff: "2026-06-13T12:00:00-07:00"
         note: "a tight, cagey affair."
       - teams: "Brazil vs Morocco"
         rating: must
+        kickoff: "2026-06-13T18:00:00-04:00"
         note: "heavyweight billing, decided by the finest of margins."
       - teams: "Haiti vs Scotland"
         rating: look
+        kickoff: "2026-06-13T21:00:00-04:00"
         note: "short on flair, long on grit."
       - teams: "Australia vs Türkiye"
         rating: look
+        kickoff: "2026-06-13T21:00:00-07:00"
         note: "scrappy and closely fought."
 
   - date: "12 June"
     matches:
       - teams: "Canada vs Bosnia and Herzegovina"
         rating: look
+        kickoff: "2026-06-12T15:00:00-04:00"
         note: "evenly matched, neither side blinking."
       - teams: "United States vs Paraguay"
         rating: skip
+        kickoff: "2026-06-12T18:00:00-07:00"
         note: "one-sided and over early."
 
   - date: "11 June"
     matches:
       - teams: "Mexico vs South Africa"
         rating: look
+        kickoff: "2026-06-11T13:00:00-06:00"
         note: "opening-night nerves, kept honest throughout."
       - teams: "South Korea vs Czechia"
         rating: must
+        kickoff: "2026-06-11T20:00:00-06:00"
         note: "nip-and-tuck from the opening day; never settled."

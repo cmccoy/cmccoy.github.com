@@ -196,23 +196,51 @@ li a::after {
   margin: 1.75rem 0 0.4rem;
 }
 
-ul.wc-matches {
-  list-style: none;
-  padding: 0;
+.wc-table {
+  width: 100%;
+  border-collapse: collapse;
   margin: 0;
 }
 
-.wc-match {
-  display: grid;
-  grid-template-columns: 1.5rem 1fr;
-  gap: 0.1rem 0.5rem;
-  align-items: baseline;
-  margin: 0.5rem 0;
+.wc-table th {
+  text-align: left;
+  font-weight: 450;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+  padding: 0.2rem 0.6rem 0.25rem 0;
+  border-bottom: 1px solid var(--link-underline);
+}
+
+.wc-table td {
+  padding: 0.35rem 0.6rem 0.35rem 0;
+  vertical-align: baseline;
+  border-bottom: 1px solid var(--link-underline);
+}
+
+.wc-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Keep the time and rating columns from stealing width from Match/Note. */
+.wc-col-time {
+  width: 6rem;
+}
+
+.wc-col-rating {
+  width: 3rem;
+}
+
+.wc-time {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 .wc-match .wc-rating {
-  grid-row: 1 / span 2;
   font-size: 1.05rem;
+  text-align: center;
 }
 
 .wc-teams {
@@ -227,7 +255,6 @@ ul.wc-matches {
 
 .wc-note {
   color: var(--muted);
-  grid-column: 2;
 }
 
 .wc-empty {
@@ -235,8 +262,8 @@ ul.wc-matches {
   font-style: italic;
 }
 
-/* The site adds " ↗" after links in list items; matches have no links, but
-   guard against any stray decoration from the global li rule. */
+/* The site adds " ↗" after links inside list items; table cells have no links,
+   but guard against any stray decoration leaking in. */
 .wc-match a::after {
   content: none;
 }
