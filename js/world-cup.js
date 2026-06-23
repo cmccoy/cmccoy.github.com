@@ -1,10 +1,11 @@
 // Interactive World Cup 2026 watchability guide.
-// Preact + htm via CDN — no build step, in keeping with the site's minimal setup.
+// Preact + htm, vendored locally (js/vendor/) — no build step, no third-party
+// CDN at runtime, in keeping with the site's minimal setup.
 // Progressive enhancement: the page ships a server-rendered list; this script
 // replaces it with a filterable/searchable version once it loads.
-import { h, render } from "https://esm.sh/preact@10.26.4";
-import { useMemo, useState } from "https://esm.sh/preact@10.26.4/hooks";
-import htm from "https://esm.sh/htm@3.1.1";
+import { h, render } from "./vendor/preact-10.29.2.module.js";
+import { useMemo, useState } from "./vendor/preact-hooks-10.29.2.module.js";
+import htm from "./vendor/htm-3.1.1.module.js";
 
 const html = htm.bind(h);
 
