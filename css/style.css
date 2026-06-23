@@ -108,6 +108,28 @@ li a::after {
   font-size: 0.95rem;
 }
 
+/* Decorative ball that floats beside the intro and slowly spins. */
+.wc-ball {
+  float: right;
+  font-size: 3.25rem;
+  line-height: 1;
+  margin: -0.4rem -0.2rem 0.4rem 1rem;
+  animation: wc-ball-spin 9s linear infinite;
+  transform-origin: 50% 50%;
+}
+
+@keyframes wc-ball-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wc-ball {
+    animation: none;
+  }
+}
+
 .wc-controls {
   display: flex;
   flex-wrap: wrap;

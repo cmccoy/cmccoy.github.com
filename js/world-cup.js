@@ -137,8 +137,8 @@ if (dataEl && mount) {
                 <table class="wc-table">
                   <thead>
                     <tr>
-                      <th scope="col" class="wc-col-time">Time (${zoneLabel})</th>
                       <th scope="col" class="wc-col-rating">Rating</th>
+                      <th scope="col" class="wc-col-time">Time (${zoneLabel})</th>
                       <th scope="col">Match</th>
                       <th scope="col">Note</th>
                     </tr>
@@ -147,13 +147,13 @@ if (dataEl && mount) {
                     ${day.matches.map(
                       (m) => html`
                         <tr class="wc-match" key=${m.teams}>
-                          <td class="wc-time">${localKickoff(m)}</td>
                           <td
                             class="wc-rating"
                             title=${data.ratings[m.rating].label}
                           >
                             ${data.ratings[m.rating].emoji}
                           </td>
+                          <td class="wc-time">${localKickoff(m)}</td>
                           <td class="wc-teams">
                             ${sidesOf(m.teams).map(
                               (s, i) => html`${i > 0 ? " vs " : ""}<span
