@@ -40,6 +40,16 @@ if (dataEl && mount) {
     day: "numeric",
     timeZone: "America/Los_Angeles",
   });
+  // Weekday for the day heading, in the same Pacific zone the days are grouped
+  // by, so e.g. "22 June" renders as "Monday, 22 June".
+  const ptWeekdayFmt = new Intl.DateTimeFormat([], {
+    weekday: "long",
+    timeZone: "America/Los_Angeles",
+  });
+  const dayHeading = (day) => {
+    const k = day.matches.map((m) => m.kickoff).find(Boolean);
+    return k ? `${ptWeekdayFmt.format(new Date(k))}, ${day.date}` : day.date;
+  };
 
   // Short label for the viewer's zone (e.g. "PDT", "GMT+9"), derived from a
   // real kickoff so it reflects that date's DST state.
@@ -92,8 +102,8 @@ if (dataEl && mount) {
                 active.has(m.rating) &&
                 (needle === "" || m.teams.toLowerCase().includes(needle)),
             )
-            // Earliest kickoff first within each day.
-            .sort((a, b) => (Date.parse(a.kickoff) || 0) - (Date.parse(b.kickoff) || 0)),
+            // Latest kickoff first within each day.
+            .sort((a, b) => (Date.parse(b.kickoff) || 0) - (Date.parse(a.kickoff) || 0)),
         }))
         .filter((day) => day.matches.length > 0);
     }, [active, needle]);
@@ -133,7 +143,7 @@ if (dataEl && mount) {
         : days.map(
             (day) => html`
               <section class="wc-day" key=${day.date}>
-                <h2>${day.date}</h2>
+                <h2>${dayHeading(day)}</h2>
                 <table class="wc-table">
                   <thead>
                     <tr>
@@ -157,10 +167,13 @@ if (dataEl && mount) {
                           <td class="wc-teams">
                             ${sidesOf(m.teams).map(
                               (s, i) => html`${i > 0 ? " vs " : ""}<span
-                                  class="wc-flag"
-                                  aria-hidden="true"
-                                  >${s.flag}</span
-                                > ${s.name}`,
+                                  class="wc-side"
+                                  ><span
+                                    class="wc-flag"
+                                    aria-hidden="true"
+                                    >${s.flag}</span
+                                  > ${s.name}</span
+                                >`,
                             )}
                           </td>
                           <td class="wc-note">${m.note}</td>
