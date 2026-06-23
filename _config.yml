@@ -5,6 +5,10 @@ url: https://www.cmccoy.us
 markdown: kramdown
 highlighter: rouge
 
+# Render server-side dates (e.g. World Cup kickoff times in the no-JS fallback)
+# in Pacific time. The interactive page localises to the visitor's own zone.
+timezone: America/Los_Angeles
+
 kramdown:
   input: GFM
 
