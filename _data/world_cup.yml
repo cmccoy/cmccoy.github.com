@@ -12,9 +12,30 @@ ratings:
     emoji: "💤"
     label: "Skip"
 
-through: "21 June 2026"
+through: "23 June 2026"
 
 days:
+  - date: "23 June"
+    matches:
+      - teams: "Portugal vs Uzbekistan"
+        rating: look
+        note: "broke the deadlock early and held firm; nerves never fully settled."
+
+  - date: "22 June"
+    matches:
+      - teams: "Argentina vs Austria"
+        rating: skip
+        note: "settled early; the result was rarely in question."
+      - teams: "France vs Iraq"
+        rating: skip
+        note: "France in control throughout; never truly tested."
+      - teams: "Norway vs Senegal"
+        rating: look
+        note: "tight on the scoreboard; the keeper kept the margin slender."
+      - teams: "Jordan vs Algeria"
+        rating: look
+        note: "both sides needed a win; a tense stalemate that served neither."
+
   - date: "21 June"
     matches:
       - teams: "Spain vs Saudi Arabia"
