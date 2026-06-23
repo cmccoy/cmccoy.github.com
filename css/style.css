@@ -269,6 +269,12 @@ li a::after {
   font-weight: 450;
 }
 
+/* Keep each side's flag and name on one line; wrapping may still happen
+   between the two sides (around "vs"). */
+.wc-side {
+  white-space: nowrap;
+}
+
 .wc-flag {
   font-style: normal;
   /* Keep the flag glyph tight against its team name. */

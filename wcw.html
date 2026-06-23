@@ -1,0 +1,20 @@
+---
+# Short alias for the World Cup guide. The canonical page stays at
+# /world-cup-watchability.html (already shared publicly); this just redirects.
+permalink: /wcw/
+sitemap: false
+---
+{% assign target = "/world-cup-watchability.html" | relative_url %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Redirecting…</title>
+<link rel="canonical" href="{{ "/world-cup-watchability.html" | absolute_url }}">
+<meta http-equiv="refresh" content="0; url={{ target }}">
+<meta name="robots" content="noindex">
+</head>
+<body>
+<p>Redirecting to the <a href="{{ target }}">World Cup 2026 Watchability guide</a>.</p>
+</body>
+</html>
