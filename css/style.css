@@ -219,6 +219,12 @@ ul.wc-matches {
   font-weight: 450;
 }
 
+.wc-flag {
+  font-style: normal;
+  /* Keep the flag glyph tight against its team name. */
+  margin-right: 0.1rem;
+}
+
 .wc-note {
   color: var(--muted);
   grid-column: 2;

@@ -20,7 +20,7 @@ reclaim your evenings from the rest.
 <section class="wc-day">
 <h2>{{ day.date }}</h2>
 <ul class="wc-matches">
-{% for m in day.matches %}{% assign r = site.data.world_cup.ratings[m.rating] %}<li class="wc-match"><span class="wc-rating" title="{{ r.label }}">{{ r.emoji }}</span> <span class="wc-teams">{{ m.teams }}</span> <span class="wc-note">— {{ m.note }}</span></li>
+{% for m in day.matches %}{% assign r = site.data.world_cup.ratings[m.rating] %}{% assign sides = m.teams | split: " vs " %}<li class="wc-match"><span class="wc-rating" title="{{ r.label }}">{{ r.emoji }}</span> <span class="wc-teams">{% for s in sides %}{% unless forloop.first %} vs {% endunless %}<span class="wc-flag" aria-hidden="true">{{ site.data.world_cup.flags[s] }}</span> {{ s }}{% endfor %}</span> <span class="wc-note">— {{ m.note }}</span></li>
 {% endfor %}</ul>
 </section>
 {% endfor %}

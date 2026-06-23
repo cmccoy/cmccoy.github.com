@@ -15,6 +15,12 @@ const mount = document.getElementById("wc-app");
 if (dataEl && mount) {
   const data = JSON.parse(dataEl.textContent);
   const ratingOrder = ["must", "look", "skip"];
+  const flags = data.flags || {};
+
+  // "Spain vs Saudi Arabia" -> [{ flag, name }, …], so each side can show
+  // its flag. Falls back to no flag for any team missing from the lookup.
+  const sidesOf = (teams) =>
+    teams.split(" vs ").map((name) => ({ flag: flags[name] || "", name }));
 
   function App() {
     // All ratings visible by default.
@@ -88,7 +94,15 @@ if (dataEl && mount) {
                         <span class="wc-rating" title=${data.ratings[m.rating].label}
                           >${data.ratings[m.rating].emoji}</span
                         >
-                        <span class="wc-teams">${m.teams}</span>
+                        <span class="wc-teams"
+                          >${sidesOf(m.teams).map(
+                            (s, i) => html`${i > 0 ? " vs " : ""}<span
+                                class="wc-flag"
+                                aria-hidden="true"
+                                >${s.flag}</span
+                              > ${s.name}`,
+                          )}</span
+                        >
                         <span class="wc-note">— ${m.note}</span>
                       </li>
                     `,
