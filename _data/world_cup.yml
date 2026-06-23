@@ -66,16 +66,7 @@ flags:
   Uruguay: "🇺🇾"
   Uzbekistan: "🇺🇿"
 
-through: "23 June 2026"
-
 days:
-  - date: "23 June"
-    matches:
-      - teams: "Portugal vs Uzbekistan"
-        rating: look
-        kickoff: "2026-06-23T12:00:00-05:00"
-        note: "broke the deadlock early and held firm; nerves never fully settled."
-
   - date: "22 June"
     matches:
       - teams: "Argentina vs Austria"

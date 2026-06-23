@@ -11,7 +11,7 @@ Every completed match gets a rating based only on how tense and dramatic it was 
 never on who won. No scores, no winners, no goal counts. Watch the good ones;
 reclaim your evenings from the rest.
 
-<p class="wc-asof">Completed matches through {{ site.data.world_cup.through }}.</p>
+{% comment %} Days are authored newest-first, so days[0] is the most recent. Derive the "through" date from it (year from its first kickoff) so this line can't drift out of sync with the match list. {% endcomment %}{% assign latest = site.data.world_cup.days[0] %}<p class="wc-asof">Completed matches through {{ latest.date }} {{ latest.matches[0].kickoff | date: "%Y" }}.</p>
 
 <div id="wc-app" class="wc-app">
 {% comment %} Server-rendered fallback shown when JavaScript is unavailable. {% endcomment %}
