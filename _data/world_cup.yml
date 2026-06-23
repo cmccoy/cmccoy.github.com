@@ -66,7 +66,24 @@ flags:
   Uruguay: "🇺🇾"
   Uzbekistan: "🇺🇿"
 
+through: "23 June 2026"
+
 days:
+  - date: "23 June"
+    matches:
+      - teams: "Portugal vs Uzbekistan"
+        rating: skip
+        kickoff: "2026-06-23T12:00:00-05:00"
+        note: "controlled from early on; Portugal managed it home without fuss."
+      - teams: "England vs Ghana"
+        rating: must
+        kickoff: "2026-06-23T16:00:00-04:00"
+        note: "deadlocked for 94 minutes; all the drama crammed into stoppage time."
+      - teams: "Panama vs Croatia"
+        rating: look
+        kickoff: "2026-06-23T19:00:00-04:00"
+        note: "survival on the line for both; the tension was real, the goals were not."
+
   - date: "22 June"
     matches:
       - teams: "Argentina vs Austria"
