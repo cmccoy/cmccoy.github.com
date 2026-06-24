@@ -66,9 +66,16 @@ flags:
   Uruguay: "🇺🇾"
   Uzbekistan: "🇺🇿"
 
-through: "23 June 2026"
+through: "24 June 2026"
 
 days:
+  - date: "24 June"
+    matches:
+      - teams: "Bosnia and Herzegovina vs Qatar"
+        rating: look
+        kickoff: "2026-06-24T12:00:00-07:00"
+        note: "both desperately needed a win; traded goals but couldn't be separated."
+
   - date: "23 June"
     matches:
       - teams: "Portugal vs Uzbekistan"
