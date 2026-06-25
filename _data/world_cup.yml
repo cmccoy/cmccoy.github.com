@@ -75,6 +75,26 @@ days:
         rating: look
         kickoff: "2026-06-24T12:00:00-07:00"
         note: "both desperately needed a win; traded goals but couldn't be separated."
+      - teams: "Canada vs Switzerland"
+        rating: look
+        kickoff: "2026-06-24T12:00:00-07:00"
+        note: "competitive throughout; Switzerland had control but Canada never let go of hope."
+      - teams: "Brazil vs Scotland"
+        rating: skip
+        kickoff: "2026-06-24T18:00:00-04:00"
+        note: "one-sided from early on; Scotland found no way through."
+      - teams: "Morocco vs Haiti"
+        rating: must
+        kickoff: "2026-06-24T18:00:00-04:00"
+        note: "goals flew in from both ends and the lead changed more than once; all-action from start to finish."
+      - teams: "Mexico vs Czechia"
+        rating: skip
+        kickoff: "2026-06-24T19:00:00-06:00"
+        note: "Mexico already through; a professional close to the group stage."
+      - teams: "South Africa vs South Korea"
+        rating: look
+        kickoff: "2026-06-24T19:00:00-06:00"
+        note: "tight from first to last; a single moment in the second half told the story."
 
   - date: "23 June"
     matches:
