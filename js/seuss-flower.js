@@ -5,8 +5,8 @@ import htm from "./vendor/htm-3.1.1.module.js";
 const html = htm.bind(h);
 
 const FLOWERS = [
-  { src: "/assets/seuss-flower.png",  alt: "A fluffy, Dr. Seuss-like flower seed head on a tall stem" },
-  { src: "/assets/seuss-flower-2.png", alt: "A fluffy, Dr. Seuss-like flower seed head with wild flowing tendrils" },
+  { src: "/assets/seuss-flower-orb.png",  alt: "A fluffy, Dr. Seuss-like flower seed head on a tall stem" },
+  { src: "/assets/seuss-flower-wisp.png", alt: "A fluffy, Dr. Seuss-like flower seed head with wild flowing tendrils" },
 ];
 
 function SeussFlower() {
