@@ -5,7 +5,7 @@ title: Connor McCoy
 
 As of June 2026 I am a Member of Technical Staff at [Anthropic](https://www.anthropic.com).
 
-Before joining Anthropic, I was a Principal Software Engineer at Google, where I worked on new instance types and virtualization for [Google Compute Engine](https://cloud.google.com/compute) followed by AI infrastructure and [TPUs](https://cloud.google.com/tpu).
+Before joining Anthropic, I was a Principal Software Engineer at [Google](https://www.google.com), where I worked on new instance types and virtualization for [Google Compute Engine](https://cloud.google.com/compute) followed by AI infrastructure and [TPUs](https://cloud.google.com/tpu).
 
 Before Google, I was a programmer in [Erick Matsen's group](http://matsen.group) within the fantastic [Fred Hutch](https://www.fredhutch.org/en.html) Computational Biology program.
 
