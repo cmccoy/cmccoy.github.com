@@ -21,7 +21,7 @@ Ruby version, image tag, and `ruby/setup-ruby` in the deploy workflow are kept i
 
 ### Host Ruby
 
-Requires Ruby 4.0 (see `.ruby-version`; macOS system Ruby is too old).
+Requires Ruby 4.0 (see `.ruby-version`; macOS system Ruby is too old). Install via `mise` (`mise install`) or Homebrew (`brew install ruby`).
 
 ```bash
 bundle install

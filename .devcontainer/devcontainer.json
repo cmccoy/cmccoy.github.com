@@ -1,7 +1,10 @@
 {
   "name": "cmccoy.github.com (Jekyll)",
-  // Ruby 4.0 — kept in lockstep with .ruby-version and the deploy workflow (ruby/setup-ruby)
-  "image": "mcr.microsoft.com/devcontainers/ruby:4.0",
+
+  // Generic Ubuntu base. Tools are installed below rather than via a feature, because the
+  // community mise feature installs to /usr/local/bin/mise but Ruby LSP only searches
+  // ~/.local/bin/mise — they don't agree on the path.
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
 
   // 4000 = `jekyll serve`, 35729 = LiveReload
   "forwardPorts": [4000, 35729],
@@ -9,15 +12,23 @@
     "4000": { "label": "Jekyll site", "onAutoForward": "openPreview" }
   },
 
-  // Install gems inside the container (isolated from the host Ruby/gemset)
-  "postCreateCommand": "bundle install",
+  // 1. Install mise to ~/.local/bin/mise (the path Ruby LSP searches).
+  // 2. mise install reads .ruby-version and installs the matching Ruby.
+  // 3. bundle install fetches gems into the container.
+  // mise exec -- injects mise's environment (Ruby shims on PATH) without requiring the shell
+  // to have sourced the mise activation script. Needed because postCreateCommand and
+  // postAttachCommand run in a plain /bin/sh with no ~/.bashrc sourced.
+  "postCreateCommand": "curl https://mise.run | sh && ~/.local/bin/mise trust && ~/.local/bin/mise install && ~/.local/bin/mise exec -- bundle install",
 
   // Auto-serve the site with live reload when you attach. Remove if you'd rather start it manually.
-  "postAttachCommand": "bundle exec jekyll serve --host 0.0.0.0 --livereload",
+  "postAttachCommand": "~/.local/bin/mise exec -- bundle exec jekyll serve --host 0.0.0.0 --livereload",
 
   "customizations": {
     "vscode": {
-      "extensions": ["Shopify.ruby-lsp"]
+      "extensions": ["Shopify.ruby-lsp"],
+      "settings": {
+        "rubyLsp.rubyVersionManager.identifier": "mise"
+      }
     }
   }
 }
