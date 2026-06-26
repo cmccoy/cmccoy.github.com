@@ -310,3 +310,30 @@ li a::after {
 .wc-match a::after {
   content: none;
 }
+
+/* ---- Hover aside notes ---- */
+
+.aside-note {
+  position: fixed;
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-style: italic;
+  max-width: 10rem;
+  line-height: 1.5;
+  pointer-events: none;
+  white-space: pre-line;
+  animation: aside-in 0.18s ease both;
+  /* Hide when the viewport is too narrow to show anything beside the column. */
+  display: none;
+}
+
+@media (min-width: 52rem) {
+  .aside-note {
+    display: block;
+  }
+}
+
+@keyframes aside-in {
+  from { opacity: 0; transform: translateX(-6px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
