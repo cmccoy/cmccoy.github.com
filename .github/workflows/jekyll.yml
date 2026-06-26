@@ -5,19 +5,20 @@ on:
     branches: [main]
   workflow_dispatch:
 
-# Allow the workflow to deploy to GitHub Pages.
+# Build on main and publish the rendered site to the gh-pages branch. Pages is
+# served from that branch (Settings → Pages → "Deploy from a branch" → gh-pages),
+# which lets PR previews live alongside production under /pr-preview/ on the same
+# branch — see pr-preview.yml.
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
-# Allow one concurrent deployment; don't cancel an in-progress run.
+# Don't cancel an in-progress production deploy.
 concurrency:
-  group: pages
+  group: deploy-production
   cancel-in-progress: false
 
 jobs:
-  build:
+  build-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -25,20 +26,15 @@ jobs:
         with:
           ruby-version: '.ruby-version'
           bundler-cache: true
-      - id: pages
-        uses: actions/configure-pages@v6
       - name: Build with Jekyll
-        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        # Custom domain serves from the root, so the default empty baseurl is correct.
+        run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
-      - uses: actions/upload-pages-artifact@v5
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v5
+      - name: Deploy to gh-pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: _site
+          branch: gh-pages
+          # Keep PR preview directories when redeploying production.
+          clean-exclude: pr-preview/

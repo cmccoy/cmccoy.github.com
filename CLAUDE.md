@@ -32,9 +32,30 @@ bundle exec jekyll build    # renders into _site/ (gitignored)
 ## Deployment
 
 Pushing to `main` triggers `.github/workflows/jekyll.yml`, which builds with Jekyll and
-deploys to GitHub Pages (`actions/upload-pages-artifact` + `actions/deploy-pages`). The
-Pages source is set to "GitHub Actions" (not "deploy from a branch"). No separate deploy
-step needed.
+publishes the rendered `_site/` to the **`gh-pages` branch** (via
+`JamesIves/github-pages-deploy-action`). GitHub Pages serves that branch, so the Pages
+source must be set to **Settings → Pages → "Deploy from a branch" → `gh-pages` / `(root)`**.
+The build writes `CNAME` into the published output, preserving the custom domain.
+
+### PR previews
+
+`.github/workflows/pr-preview.yml` builds every pull request and deploys an interactive,
+clickable preview to `https://www.cmccoy.us/pr-preview/pr-<N>/` (via
+`rossjrw/pr-preview-action`). The preview lives in a `pr-preview/` subdirectory of the
+same `gh-pages` branch — production deploys preserve it with `clean-exclude: pr-preview/`,
+and it is removed automatically when the PR closes. A sticky comment on the PR links to
+the preview.
+
+Previews are built with `--baseurl /pr-preview/pr-<N>`, so all asset links must go through
+Liquid's `relative_url` / `absolute_url` filters (not hardcoded absolute paths) to resolve
+under the subdirectory. One known limitation: absolute asset paths *inside* static JS that
+Jekyll doesn't process — e.g. the `/assets/seuss-flower-*.png` references in
+`js/seuss-flower.js` — are not rewritten, so on a preview they load from the production
+domain rather than the preview. Harmless for unchanged assets; a PR that changes those
+specific images won't show the change in its preview.
+
+> Previews only deploy for PRs from this repo (branches), not forks — `GITHUB_TOKEN` is
+> read-only for fork PRs, which is expected for a single-maintainer site.
 
 ## Architecture
 
@@ -75,4 +96,4 @@ To update a vendored library (the host CDNs may be blocked in sandboxes, so pull
 
 - `Gemfile` pins `jekyll ~> 4.3` plus `webrick` (required for `jekyll serve` on Ruby 3+).
 - `Gemfile.lock` includes `x86_64-linux` and `ruby` platforms so CI (Ubuntu) can install; regenerate with `bundle lock --add-platform x86_64-linux ruby` if needed.
-- `CNAME` must stay in the repo root — Jekyll copies it into `_site/`, preserving the custom domain through the Actions deploy.
+- `CNAME` must stay in the repo root — Jekyll copies it into `_site/`, which is published to the `gh-pages` branch, preserving the custom domain.
