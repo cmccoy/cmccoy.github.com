@@ -66,9 +66,36 @@ flags:
   Uruguay: "🇺🇾"
   Uzbekistan: "🇺🇿"
 
-through: "24 June 2026"
+through: "25 June 2026"
 
 days:
+  - date: "25 June"
+    matches:
+      - teams: "Ecuador vs Germany"
+        rating: must
+        kickoff: "2026-06-25T16:00:00-04:00"
+        note: "germany first on the board; ecuador clawed back quickly; var drama in the second half and a late breakthrough to seal the outcome."
+      - teams: "Curaçao vs Ivory Coast"
+        rating: skip
+        kickoff: "2026-06-25T16:00:00-04:00"
+        note: "ivory coast dominant from the start; the result clear well before the end."
+      - teams: "Japan vs Sweden"
+        rating: look
+        kickoff: "2026-06-25T18:00:00-05:00"
+        note: "japan ahead, sweden level within minutes of each other; both sides settled for the draw."
+      - teams: "Netherlands vs Tunisia"
+        rating: skip
+        kickoff: "2026-06-25T18:00:00-05:00"
+        note: "netherlands in cruise control throughout; never seriously tested."
+      - teams: "Türkiye vs United States"
+        rating: must
+        kickoff: "2026-06-25T19:00:00-07:00"
+        note: "lead changes throughout; went toe-to-toe into stoppage time before a last-gasp goal settled it."
+      - teams: "Paraguay vs Australia"
+        rating: skip
+        kickoff: "2026-06-25T19:00:00-07:00"
+        note: "couldn't be separated; a stalemate that still sent both sides through."
+
   - date: "24 June"
     matches:
       - teams: "Bosnia and Herzegovina vs Qatar"
