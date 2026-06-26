@@ -9,7 +9,7 @@ const html = htm.bind(h);
 // URL fragment → aside text. Matched with href.includes(key).
 const ASIDES = {
   "anthropic.com": "makes Claude.",
-  "google.com":    "search company, founded 1998.",
+  "//www.google.com": "search company, founded 1998.",
 };
 
 function findAside(href) {
