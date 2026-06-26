@@ -18,5 +18,5 @@ Outside of work, I am married to the amazing [Cate](https://www.benaroyaresearch
 
 <img id="seuss-flower" src="/assets/seuss-flower.png" alt="A fluffy, Dr. Seuss-like flower seed head on a tall stem" class="photo">
 <script>
-(function(){var f=["/assets/seuss-flower.png","/assets/seuss-flower-2.png"];var a=[" on a tall stem","with wild flowing tendrils"];var i=Math.random()<0.5?0:1;var el=document.getElementById("seuss-flower");el.src=f[i];el.alt="A fluffy, Dr. Seuss-like flower seed head"+a[i];})();
+(function(){var f=["/assets/seuss-flower.png","/assets/seuss-flower-2.png"];var a=[" on a tall stem","with wild flowing tendrils"];var i=Math.floor(Math.random()*2);var el=document.getElementById("seuss-flower");el.src=f[i];el.alt="A fluffy, Dr. Seuss-like flower seed head"+a[i];})();
 </script>
