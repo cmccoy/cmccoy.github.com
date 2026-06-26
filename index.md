@@ -16,7 +16,5 @@ Outside of work, I am married to the amazing [Cate](https://www.benaroyaresearch
 <li><a href="https://www.strava.com/athletes/929101" aria-label="Strava" class="icon-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.599h4.172L10.463 0l-7 13.828h4.169"/></svg></a></li>
 </ul>
 
-<img id="seuss-flower" src="/assets/seuss-flower-orb.png" alt="A fluffy, Dr. Seuss-like flower seed head on a tall stem" class="photo">
-<script>
-(function(){var f=["/assets/seuss-flower-orb.png","/assets/seuss-flower-wisp.png"];var a=[" on a tall stem","with wild flowing tendrils"];var i=Math.floor(Math.random()*2);var el=document.getElementById("seuss-flower");el.src=f[i];el.alt="A fluffy, Dr. Seuss-like flower seed head"+a[i];})();
-</script>
+<div id="seuss-flower-root"></div>
+<script type="module" src="/js/seuss-flower.js"></script>
