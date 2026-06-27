@@ -32,47 +32,9 @@ bundle exec jekyll build    # renders into _site/ (gitignored)
 ## Deployment
 
 Pushing to `main` triggers `.github/workflows/jekyll.yml`, which builds with Jekyll and
-deploys to GitHub Pages via the modern **"GitHub Actions" Pages source**
-(`actions/configure-pages` → `actions/upload-pages-artifact` → `actions/deploy-pages`).
-No branch source and no manual Pages setting — the Pages source stays on **Settings →
-Pages → "GitHub Actions"**. `CNAME` (in the repo root) is copied into `_site/`, preserving
-the custom domain.
-
-### PR previews
-
-`.github/workflows/pr-preview.yml` builds every pull request with
-`--baseurl /pr-preview/pr-<N>` and stages an interactive, clickable preview reviewers can
-use at `https://www.cmccoy.us/pr-preview/pr-<N>/`. A sticky comment on the PR links to it.
-
-Because the "GitHub Actions" Pages source serves a single whole-site artifact (each deploy
-replaces the entire site), previews can't be a separate deployment — they have to ship
-*inside* the same artifact. So the flow is:
-
-1. `pr-preview.yml` builds the PR and uses `rossjrw/pr-preview-action` to commit the built
-   site to the **`pr-previews` branch** under `pr-preview/pr-<N>/`. **This branch is storage
-   only — it is never the Pages source and is never served directly.** On PR close the
-   action removes that directory (and the sticky comment).
-2. When `pr-preview.yml` finishes, it triggers `jekyll.yml` via `workflow_run`. That deploy
-   job rebuilds production *from `main`* (so PR code never reaches production paths), then
-   its "Overlay PR previews" step folds the `pr-preview/` tree from the `pr-previews` branch
-   into `_site/pr-preview/` before uploading the artifact. Pushes to `main` redeploy the
-   same way, so previews for still-open PRs are preserved on every production deploy.
-
-A single concurrency group (`pages`) serialises all deploys so none clobber each other.
-Tradeoff of staying on the Actions source: every preview add/update/remove triggers a full
-production redeploy (cheap for this site), and a freshly pushed preview goes live a beat
-after its sticky comment posts (once the `workflow_run` deploy completes).
-
-Previews are built with the `/pr-preview/pr-<N>` baseurl, so all asset links must go through
-Liquid's `relative_url` / `absolute_url` filters (not hardcoded absolute paths) to resolve
-under the subdirectory. One known limitation: absolute asset paths *inside* static JS that
-Jekyll doesn't process — e.g. the `/assets/seuss-flower-*.png` references in
-`js/seuss-flower.js` — are not rewritten, so on a preview they load from the production
-domain rather than the preview. Harmless for unchanged assets; a PR that changes those
-specific images won't show the change in its preview.
-
-> Previews only deploy for PRs from this repo (branches), not forks — `GITHUB_TOKEN` is
-> read-only for fork PRs, which is expected for a single-maintainer site.
+deploys to GitHub Pages (`actions/upload-pages-artifact` + `actions/deploy-pages`). The
+Pages source is set to "GitHub Actions" (not "deploy from a branch"). No separate deploy
+step needed.
 
 ## Architecture
 
@@ -113,4 +75,4 @@ To update a vendored library (the host CDNs may be blocked in sandboxes, so pull
 
 - `Gemfile` pins `jekyll ~> 4.3` plus `webrick` (required for `jekyll serve` on Ruby 3+).
 - `Gemfile.lock` includes `x86_64-linux` and `ruby` platforms so CI (Ubuntu) can install; regenerate with `bundle lock --add-platform x86_64-linux ruby` if needed.
-- `CNAME` must stay in the repo root — Jekyll copies it into `_site/`, which is deployed to GitHub Pages, preserving the custom domain.
+- `CNAME` must stay in the repo root — Jekyll copies it into `_site/`, preserving the custom domain through the Actions deploy.

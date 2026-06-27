@@ -3,20 +3,15 @@ name: Build and deploy site
 on:
   push:
     branches: [main]
-  # Redeploy whenever a PR preview is added/updated/removed, so the preview
-  # appears in the live Pages artifact (see pr-preview.yml).
-  workflow_run:
-    workflows: ["Deploy PR preview"]
-    types: [completed]
   workflow_dispatch:
 
-# Deploy to the GitHub Pages "GitHub Actions" source (no branch source).
+# Allow the workflow to deploy to GitHub Pages.
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# One deployment at a time; queue rather than cancel so no deploy is lost.
+# Allow one concurrent deployment; don't cancel an in-progress run.
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -24,11 +19,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # Don't redeploy if the upstream preview workflow failed.
-    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     steps:
-      # Always builds production from the default branch (main) — for push and
-      # workflow_run events alike — so PR code never reaches the production paths.
       - uses: actions/checkout@v6
       - uses: ruby/setup-ruby@v1
         with:
@@ -40,19 +31,6 @@ jobs:
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
-      - name: Overlay PR previews into the site
-        # PR previews are kept on the (unserved) pr-previews branch under
-        # pr-preview/pr-<N>/. Fold them into the artifact so they ship at
-        # https://www.cmccoy.us/pr-preview/pr-<N>/ alongside production.
-        run: |
-          if git fetch origin pr-previews 2>/dev/null && git cat-file -e FETCH_HEAD:pr-preview 2>/dev/null; then
-            git checkout FETCH_HEAD -- pr-preview
-            mkdir -p _site/pr-preview
-            cp -r pr-preview/. _site/pr-preview/
-            echo "Overlaid PR previews from the pr-previews branch."
-          else
-            echo "No PR previews to overlay."
-          fi
       - uses: actions/upload-pages-artifact@v5
 
   deploy:
