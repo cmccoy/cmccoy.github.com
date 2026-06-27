@@ -66,9 +66,47 @@ flags:
   Uruguay: "🇺🇾"
   Uzbekistan: "🇺🇿"
 
-through: "25 June 2026"
+through: "27 June 2026"
 
 days:
+  - date: "27 June"
+    matches:
+      - teams: "Croatia vs Ghana"
+        rating: look
+        kickoff: "2026-06-27T17:00:00-04:00"
+        note: "ghana matched croatia for a spell but croatia showed their quality in the end."
+      - teams: "Panama vs England"
+        rating: skip
+        kickoff: "2026-06-27T17:00:00-04:00"
+        note: "england in control throughout; panama battled but the gulf in class told."
+
+  - date: "26 June"
+    matches:
+      - teams: "France vs Norway"
+        rating: skip
+        kickoff: "2026-06-26T15:00:00-04:00"
+        note: "france in control from the first whistle; a first-half burst settled it."
+      - teams: "Senegal vs Iraq"
+        rating: skip
+        kickoff: "2026-06-26T15:00:00-04:00"
+        note: "senegal dominant from the off; iraq offered little threat."
+      - teams: "Spain vs Uruguay"
+        rating: look
+        kickoff: "2026-06-26T18:00:00-06:00"
+        note: "spain ground out the narrowest of wins; uruguay stayed in it to the end."
+      - teams: "Cape Verde vs Saudi Arabia"
+        rating: look
+        kickoff: "2026-06-26T19:00:00-05:00"
+        note: "both sides fighting for survival; a combative, hard-fought stalemate."
+      - teams: "Belgium vs New Zealand"
+        rating: skip
+        kickoff: "2026-06-26T20:00:00-07:00"
+        note: "belgium rampant; new zealand found little response."
+      - teams: "Egypt vs Iran"
+        rating: must
+        kickoff: "2026-06-26T20:00:00-07:00"
+        note: "evenly matched throughout; a stoppage-time var call overturned what looked like the decisive goal — a finish to remember."
+
   - date: "25 June"
     matches:
       - teams: "Ecuador vs Germany"
