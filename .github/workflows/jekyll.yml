@@ -3,38 +3,64 @@ name: Build and deploy site
 on:
   push:
     branches: [main]
+  # Redeploy whenever a PR preview is added/updated/removed, so the preview
+  # appears in the live Pages artifact (see pr-preview.yml).
+  workflow_run:
+    workflows: ["Deploy PR preview"]
+    types: [completed]
   workflow_dispatch:
 
-# Build on main and publish the rendered site to the gh-pages branch. Pages is
-# served from that branch (Settings → Pages → "Deploy from a branch" → gh-pages),
-# which lets PR previews live alongside production under /pr-preview/ on the same
-# branch — see pr-preview.yml.
+# Deploy to the GitHub Pages "GitHub Actions" source (no branch source).
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
-# Don't cancel an in-progress production deploy.
+# One deployment at a time; queue rather than cancel so no deploy is lost.
 concurrency:
-  group: deploy-production
+  group: pages
   cancel-in-progress: false
 
 jobs:
-  build-deploy:
+  build:
     runs-on: ubuntu-latest
+    # Don't redeploy if the upstream preview workflow failed.
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     steps:
+      # Always builds production from the default branch (main) — for push and
+      # workflow_run events alike — so PR code never reaches the production paths.
       - uses: actions/checkout@v6
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '.ruby-version'
           bundler-cache: true
+      - id: pages
+        uses: actions/configure-pages@v6
       - name: Build with Jekyll
-        # Custom domain serves from the root, so the default empty baseurl is correct.
-        run: bundle exec jekyll build
+        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
-      - name: Deploy to gh-pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: _site
-          branch: gh-pages
-          # Keep PR preview directories when redeploying production.
-          clean-exclude: pr-preview/
+      - name: Overlay PR previews into the site
+        # PR previews are kept on the (unserved) pr-previews branch under
+        # pr-preview/pr-<N>/. Fold them into the artifact so they ship at
+        # https://www.cmccoy.us/pr-preview/pr-<N>/ alongside production.
+        run: |
+          if git fetch origin pr-previews 2>/dev/null && git cat-file -e FETCH_HEAD:pr-preview 2>/dev/null; then
+            git checkout FETCH_HEAD -- pr-preview
+            mkdir -p _site/pr-preview
+            cp -r pr-preview/. _site/pr-preview/
+            echo "Overlaid PR previews from the pr-previews branch."
+          else
+            echo "No PR previews to overlay."
+          fi
+      - uses: actions/upload-pages-artifact@v5
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5
