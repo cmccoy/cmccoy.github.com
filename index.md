@@ -17,5 +17,5 @@ Outside of work, I am married to the amazing [Cate](https://www.benaroyaresearch
 </ul>
 
 <div id="seuss-flower-root"></div>
-<script type="module" src="{{ '/js/seuss-flower.js' | relative_url }}"></script>
-<script type="module" src="{{ '/js/index.js' | relative_url }}"></script>
+<script type="module" src="/js/seuss-flower.js"></script>
+<script type="module" src="/js/index.js"></script>
