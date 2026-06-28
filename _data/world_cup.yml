@@ -79,6 +79,22 @@ days:
         rating: skip
         kickoff: "2026-06-27T17:00:00-04:00"
         note: "england in control throughout; panama battled but the gulf in class told."
+      - teams: "Colombia vs Portugal"
+        rating: look
+        kickoff: "2026-06-27T19:30:00-04:00"
+        note: "tight all night; a stoppage-time goal chalked off by var kept the stalemate intact."
+      - teams: "DR Congo vs Uzbekistan"
+        rating: must
+        kickoff: "2026-06-27T19:30:00-04:00"
+        note: "uzbekistan took the initiative early but dr congo hit back hard in the second half for a dramatic turnaround."
+      - teams: "Jordan vs Argentina"
+        rating: skip
+        kickoff: "2026-06-27T21:00:00-05:00"
+        note: "argentina in control throughout even with rotation; jordan showed heart but never truly threatened."
+      - teams: "Algeria vs Austria"
+        rating: must
+        kickoff: "2026-06-27T21:00:00-05:00"
+        note: "a breathless back-and-forth with goals at both ends; austria snatched a stoppage-time leveller to share the spoils."
 
   - date: "26 June"
     matches:
