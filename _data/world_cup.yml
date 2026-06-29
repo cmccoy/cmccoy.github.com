@@ -66,9 +66,16 @@ flags:
   Uruguay: "🇺🇾"
   Uzbekistan: "🇺🇿"
 
-through: "27 June 2026"
+through: "28 June 2026"
 
 days:
+  - date: "28 June"
+    matches:
+      - teams: "South Africa vs Canada"
+        rating: must
+        kickoff: "2026-06-28T12:00:00-07:00"
+        note: "gripping throughout; both sides level until a stoppage-time moment finally separated them."
+
   - date: "27 June"
     matches:
       - teams: "Croatia vs Ghana"
