@@ -66,9 +66,16 @@ flags:
   Uruguay: "🇺🇾"
   Uzbekistan: "🇺🇿"
 
-through: "29 June 2026"
+through: "30 June 2026"
 
 days:
+  - date: "30 June"
+    matches:
+      - teams: "Ivory Coast vs Norway"
+        kickoff: "2026-06-30T13:00:00-05:00"
+        rating: must
+        note: "a lead, a leveller, and a late winner — taut from start to finish."
+
   - date: "29 June"
     matches:
       - teams: "Brazil vs Japan"
