@@ -66,9 +66,24 @@ flags:
   Uruguay: "🇺🇾"
   Uzbekistan: "🇺🇿"
 
-through: "28 June 2026"
+through: "29 June 2026"
 
 days:
+  - date: "29 June"
+    matches:
+      - teams: "Brazil vs Japan"
+        rating: must
+        kickoff: "2026-06-29T13:00:00-05:00"
+        note: "japan led early; the lead changed in the second half and again in the 96th minute — breathless from first whistle to last."
+      - teams: "Germany vs Paraguay"
+        rating: must
+        kickoff: "2026-06-29T16:30:00-04:00"
+        note: "couldn't be separated over 90 minutes or 120; the penalty shootout that followed was one for the ages."
+      - teams: "Netherlands vs Morocco"
+        rating: must
+        kickoff: "2026-06-29T21:00:00-06:00"
+        note: "a dutch lead before a stoppage-time leveller forced extra time; the shootout was tight to the very last kick."
+
   - date: "28 June"
     matches:
       - teams: "South Africa vs Canada"
