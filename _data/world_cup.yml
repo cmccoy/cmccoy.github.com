@@ -75,6 +75,10 @@ days:
         kickoff: "2026-06-30T13:00:00-05:00"
         rating: must
         note: "a lead, a leveller, and a late winner — taut from start to finish."
+      - teams: "France vs Sweden"
+        kickoff: "2026-06-30T17:00:00-04:00"
+        rating: skip
+        note: "france in command from the first whistle; mbappé struck before the break and sweden had no answer."
 
   - date: "29 June"
     matches:
