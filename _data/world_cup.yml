@@ -79,6 +79,10 @@ days:
         kickoff: "2026-06-30T17:00:00-04:00"
         rating: skip
         note: "france in command from the first whistle; mbappé struck before the break and sweden had no answer."
+      - teams: "Mexico vs Ecuador"
+        kickoff: "2026-06-30T19:00:00-06:00"
+        rating: skip
+        note: "dominant from the off; settled well before the final whistle, with a feisty close capping a one-sided affair."
 
   - date: "29 June"
     matches:
