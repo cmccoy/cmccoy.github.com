@@ -66,9 +66,16 @@ flags:
   Uruguay: "🇺🇾"
   Uzbekistan: "🇺🇿"
 
-through: "30 June 2026"
+through: "1 July 2026"
 
 days:
+  - date: "1 July"
+    matches:
+      - teams: "England vs DR Congo"
+        kickoff: "2026-07-01T12:00:00-04:00"
+        rating: must
+        note: "in front inside ten minutes; both the equaliser and the winner arrived in the final quarter-hour, with a near-miss in stoppage time making for a breathless close."
+
   - date: "30 June"
     matches:
       - teams: "Ivory Coast vs Norway"
