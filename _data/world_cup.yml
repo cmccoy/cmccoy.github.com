@@ -75,6 +75,14 @@ days:
         kickoff: "2026-07-01T12:00:00-04:00"
         rating: must
         note: "in front inside ten minutes; both the equaliser and the winner arrived in the final quarter-hour, with a near-miss in stoppage time making for a breathless close."
+      - teams: "Belgium vs Senegal"
+        kickoff: "2026-07-01T13:00:00-07:00"
+        rating: must
+        note: "trailed by two with less than ten minutes left; hauled level in stoppage time, then snatched the winner in the dying seconds of extra time — one of the great comebacks of the tournament so far."
+      - teams: "United States vs Bosnia and Herzegovina"
+        kickoff: "2026-07-01T17:00:00-07:00"
+        rating: look
+        note: "bosnia sat deep and organized superbly; usa dominated the ball but clear openings were hard to come by."
 
   - date: "30 June"
     matches:
