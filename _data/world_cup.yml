@@ -66,9 +66,20 @@ flags:
   Uruguay: "🇺🇾"
   Uzbekistan: "🇺🇿"
 
-through: "1 July 2026"
+through: "2 July 2026"
 
 days:
+  - date: "2 July"
+    matches:
+      - teams: "Spain vs Austria"
+        kickoff: "2026-07-02T12:00:00-07:00"
+        rating: skip
+        note: "spain in command throughout; austria gave their all but the class gap proved too wide."
+      - teams: "Portugal vs Croatia"
+        kickoff: "2026-07-02T19:00:00-04:00"
+        rating: look
+        note: "croatia organised and stubborn for long stretches; portugal's quality eventually told."
+
   - date: "1 July"
     matches:
       - teams: "England vs DR Congo"
