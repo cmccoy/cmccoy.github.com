@@ -79,6 +79,10 @@ days:
         kickoff: "2026-07-02T19:00:00-04:00"
         rating: look
         note: "croatia organised and stubborn for long stretches; portugal's quality eventually told."
+      - teams: "Switzerland vs Algeria"
+        kickoff: "2026-07-02T20:00:00-07:00"
+        rating: skip
+        note: "switzerland in command from the off; algeria found no foothold and the swiss saw it out without fuss."
 
   - date: "1 July"
     matches:
