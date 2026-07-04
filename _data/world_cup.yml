@@ -66,9 +66,20 @@ flags:
   Uruguay: "🇺🇾"
   Uzbekistan: "🇺🇿"
 
-through: "3 July 2026"
+through: "4 July 2026"
 
 days:
+  - date: "4 July"
+    matches:
+      - teams: "Morocco vs Canada"
+        kickoff: "2026-07-04T12:00:00-05:00"
+        rating: skip
+        note: "canada offered a lively opening half but morocco took firm control after the break; result settled well before the finish."
+      - teams: "France vs Paraguay"
+        kickoff: "2026-07-04T17:00:00-04:00"
+        rating: skip
+        note: "france in control throughout; paraguay created little and the result was never in doubt."
+
   - date: "3 July"
     matches:
       - teams: "Australia vs Egypt"
