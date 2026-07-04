@@ -79,6 +79,10 @@ days:
         kickoff: "2026-07-03T18:00:00-04:00"
         rating: must
         note: "the lead was cancelled in the second half, forcing extra time; a goal in the opening minutes of the additional period finally settled it."
+      - teams: "Colombia vs Ghana"
+        kickoff: "2026-07-03T19:30:00-05:00"
+        rating: skip
+        note: "colombia in control from an early goal; ghana found no foothold and the result was settled well before the finish."
 
   - date: "2 July"
     matches:
