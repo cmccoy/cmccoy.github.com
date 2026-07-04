@@ -66,9 +66,20 @@ flags:
   Uruguay: "🇺🇾"
   Uzbekistan: "🇺🇿"
 
-through: "2 July 2026"
+through: "3 July 2026"
 
 days:
+  - date: "3 July"
+    matches:
+      - teams: "Australia vs Egypt"
+        kickoff: "2026-07-03T13:00:00-05:00"
+        rating: must
+        note: "locked through ninety and extra time; the shootout had its nerves, with misses on both sides before one team eventually came through."
+      - teams: "Argentina vs Cape Verde"
+        kickoff: "2026-07-03T18:00:00-04:00"
+        rating: must
+        note: "the lead was cancelled in the second half, forcing extra time; a goal in the opening minutes of the additional period finally settled it."
+
   - date: "2 July"
     matches:
       - teams: "Spain vs Austria"
