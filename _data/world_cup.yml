@@ -66,9 +66,16 @@ flags:
   Uruguay: "🇺🇾"
   Uzbekistan: "🇺🇿"
 
-through: "4 July 2026"
+through: "5 July 2026"
 
 days:
+  - date: "5 July"
+    matches:
+      - teams: "Brazil vs Norway"
+        kickoff: "2026-07-05T16:00:00-04:00"
+        rating: must
+        note: "chances at both ends frustrated by fine keeping; a disallowed goal and a saved penalty kept the tension sky-high before a late strike finally settled it."
+
   - date: "4 July"
     matches:
       - teams: "Morocco vs Canada"
