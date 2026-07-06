@@ -75,6 +75,10 @@ days:
         kickoff: "2026-07-05T16:00:00-04:00"
         rating: must
         note: "chances at both ends frustrated by fine keeping; a disallowed goal and a saved penalty kept the tension sky-high before a late strike finally settled it."
+      - teams: "Mexico vs England"
+        kickoff: "2026-07-05T18:00:00-06:00"
+        rating: must
+        note: "end-to-end throughout with goals at both ends; a second-half red card shifted the balance, and the final thirty minutes were breathless."
 
   - date: "4 July"
     matches:
