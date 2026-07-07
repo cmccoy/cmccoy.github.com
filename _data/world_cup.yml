@@ -66,9 +66,16 @@ flags:
   Uruguay: "🇺🇾"
   Uzbekistan: "🇺🇿"
 
-through: "5 July 2026"
+through: "6 July 2026"
 
 days:
+  - date: "6 July"
+    matches:
+      - teams: "Spain vs Portugal"
+        kickoff: "2026-07-06T14:00:00-05:00"
+        rating: look
+        note: "spain controlled the tempo but portugal stayed dangerous; a solitary stoppage-time strike finally broke the deadlock."
+
   - date: "5 July"
     matches:
       - teams: "Brazil vs Norway"
