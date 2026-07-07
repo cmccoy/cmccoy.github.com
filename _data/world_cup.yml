@@ -66,9 +66,16 @@ flags:
   Uruguay: "🇺🇾"
   Uzbekistan: "🇺🇿"
 
-through: "6 July 2026"
+through: "7 July 2026"
 
 days:
+  - date: "7 July"
+    matches:
+      - teams: "Argentina vs Egypt"
+        kickoff: "2026-07-07T12:00:00-04:00"
+        rating: must
+        note: "two down in the final quarter-hour — then three in eleven minutes; a missed penalty, var chaos, and a breathless finish made this one of the tournament's great nights."
+
   - date: "6 July"
     matches:
       - teams: "Spain vs Portugal"
