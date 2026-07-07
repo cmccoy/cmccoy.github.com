@@ -75,6 +75,10 @@ days:
         kickoff: "2026-07-06T14:00:00-05:00"
         rating: look
         note: "spain controlled the tempo but portugal stayed dangerous; a solitary stoppage-time strike finally broke the deadlock."
+      - teams: "Belgium vs United States"
+        kickoff: "2026-07-06T17:00:00-07:00"
+        rating: skip
+        note: "level briefly before the lead was immediately restored and extended; red-card controversy in the build-up, though the result was settled well before the finish."
 
   - date: "5 July"
     matches:
