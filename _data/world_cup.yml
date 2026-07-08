@@ -75,6 +75,10 @@ days:
         kickoff: "2026-07-07T12:00:00-04:00"
         rating: must
         note: "two down in the final quarter-hour — then three in eleven minutes; a missed penalty, var chaos, and a breathless finish made this one of the tournament's great nights."
+      - teams: "Switzerland vs Colombia"
+        kickoff: "2026-07-07T13:00:00-07:00"
+        rating: look
+        note: "cagey and hard to break down through 120 minutes; a stalemate sent it to spot-kicks, where a crossbar and a key save made the shootout tight to the very last kick."
 
   - date: "6 July"
     matches:
