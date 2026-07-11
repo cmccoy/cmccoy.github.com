@@ -66,9 +66,16 @@ flags:
   Uruguay: "🇺🇾"
   Uzbekistan: "🇺🇿"
 
-through: "9 July 2026"
+through: "10 July 2026"
 
 days:
+  - date: "10 July"
+    matches:
+      - teams: "Spain vs Belgium"
+        kickoff: "2026-07-10T12:00:00-07:00"
+        rating: must
+        note: "level at the break; intense second half with chances at both ends and goalkeeper drama late on; a substitute's strike two minutes from time finally settled it."
+
   - date: "9 July"
     matches:
       - teams: "France vs Morocco"
