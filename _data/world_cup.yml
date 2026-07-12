@@ -66,9 +66,16 @@ flags:
   Uruguay: "🇺🇾"
   Uzbekistan: "🇺🇿"
 
-through: "10 July 2026"
+through: "11 July 2026"
 
 days:
+  - date: "11 July"
+    matches:
+      - teams: "Norway vs England"
+        kickoff: "2026-07-11T17:00:00-04:00"
+        rating: must
+        note: "fell behind in the first half; level just before the break; goalless second half sent it to extra time; the decisive moment finally arrived in the 123rd minute."
+
   - date: "10 July"
     matches:
       - teams: "Spain vs Belgium"
