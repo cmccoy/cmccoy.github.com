@@ -66,9 +66,23 @@ flags:
   Uruguay: "🇺🇾"
   Uzbekistan: "🇺🇿"
 
-through: "11 July 2026"
+through: "15 July 2026"
 
 days:
+  - date: "15 July"
+    matches:
+      - teams: "England vs Argentina"
+        kickoff: "2026-07-15T15:00:00-04:00"
+        rating: must
+        note: "high-scoring and fiercely contested; a red card mid-match raised the stakes further, and the closing stages required desperate defensive survival — as gripping as the knockout stage gets."
+
+  - date: "14 July"
+    matches:
+      - teams: "France vs Spain"
+        kickoff: "2026-07-14T14:00:00-05:00"
+        rating: skip
+        note: "france's attack found little room against a resolute defence; the lead arrived in the first half and the result was never seriously in doubt."
+
   - date: "11 July"
     matches:
       - teams: "Norway vs England"
