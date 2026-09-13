@@ -1,0 +1,56 @@
+#!/bin/zsh
+# Add a photo to the home-page strip.
+#
+#   bin/photos add <image> <slug> "<caption>" ["<alt text>"]
+#
+# Produces two WebP derivatives under assets/photos/ (a 480px square thumbnail
+# and a 1600px long-edge full view), strips all metadata (EXIF/GPS), and
+# appends an entry to _data/photos.yml. Originals are never committed.
+#
+# Needs macOS `sips` (built in) and `cwebp` (brew install webp).
+set -euo pipefail
+
+root=${0:A:h:h}
+cmd=${1:-}
+[[ $cmd == add && $# -ge 4 ]] || { sed -n '2,10p' "$0"; exit 1 }
+src=$2 slug=$3 caption=$4 alt=${5:-$4}
+[[ -f $src ]] || { echo "no such file: $src" >&2; exit 1 }
+[[ $slug == [a-z0-9]*([a-z0-9-]) ]] || { echo "slug must be lowercase letters, digits, dashes" >&2; exit 1 }
+command -v cwebp >/dev/null || { echo "cwebp not found: brew install webp" >&2; exit 1 }
+
+out=$root/assets/photos
+mkdir -p "$out"
+tmp=$(mktemp -d); trap 'rm -rf "$tmp"' EXIT
+
+# Normalise any input (HEIC, PNG, JPEG) to an sRGB JPEG for sips/cwebp to chew on.
+sips -s format jpeg -m "/System/Library/ColorSync/Profiles/sRGB Profile.icc" "$src" --out "$tmp/src.jpg" >/dev/null
+
+# Full view: long edge 1600px.
+sips -Z 1600 "$tmp/src.jpg" --out "$tmp/full.jpg" >/dev/null
+cwebp -quiet -q 82 -metadata none "$tmp/full.jpg" -o "$out/$slug.webp"
+
+# Thumbnail: short edge 480px, then centre-crop to a square.
+w=$(sips -g pixelWidth  "$tmp/src.jpg" | awk '/pixelWidth/{print $2}')
+h=$(sips -g pixelHeight "$tmp/src.jpg" | awk '/pixelHeight/{print $2}')
+if (( w < h )); then sips --resampleWidth 480 "$tmp/src.jpg" --out "$tmp/sq.jpg" >/dev/null
+else                 sips --resampleHeight 480 "$tmp/src.jpg" --out "$tmp/sq.jpg" >/dev/null; fi
+sips -c 480 480 "$tmp/sq.jpg" --out "$tmp/thumb.jpg" >/dev/null
+cwebp -quiet -q 80 -metadata none "$tmp/thumb.jpg" -o "$out/$slug-thumb.webp"
+
+fw=$(sips -g pixelWidth  "$tmp/full.jpg" | awk '/pixelWidth/{print $2}')
+fh=$(sips -g pixelHeight "$tmp/full.jpg" | awk '/pixelHeight/{print $2}')
+
+data=$root/_data/photos.yml
+mkdir -p "$root/_data"
+[[ -f $data ]] || printf '# Photos shown in the home-page strip. Add entries with bin/photos.\n' > "$data"
+q() { printf '%s' "$1" | sed 's/"/\\"/g' }
+cat >> "$data" <<YAML
+- slug: $slug
+  caption: "$(q "$caption")"
+  alt: "$(q "$alt")"
+  width: $fw
+  height: $fh
+YAML
+
+ls -la "$out/$slug.webp" "$out/$slug-thumb.webp"
+echo "appended $slug to _data/photos.yml"

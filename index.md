@@ -16,5 +16,12 @@ Outside of work, I am married to the amazing [Cate](https://www.benaroyaresearch
 <li><a href="https://www.strava.com/athletes/929101" aria-label="Strava" class="icon-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.599h4.172L10.463 0l-7 13.828h4.169"/></svg></a></li>
 </ul>
 
-<div id="seuss-flower-root"></div>
-<script type="module" src="/js/seuss-flower.js"></script>
+<div id="photo-strip-root">
+<ul class="photo-strip" style="--count: {{ site.data.photos | size | at_most: 4 }}">
+{%- for photo in site.data.photos limit: 4 %}
+<li><a href="/assets/photos/{{ photo.slug }}.webp" aria-label="View: {{ photo.caption }}"><img src="/assets/photos/{{ photo.slug }}-thumb.webp" alt="{{ photo.alt }}" width="480" height="480" loading="lazy" decoding="async"></a></li>
+{%- endfor %}
+</ul>
+</div>
+<script type="application/json" id="photo-strip-data">{{ site.data.photos | jsonify }}</script>
+<script type="module" src="/js/photo-strip.js"></script>

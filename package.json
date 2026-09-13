@@ -1,0 +1,14 @@
+{
+  "name": "cmccoy.github.com",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "preact": "10.29.8",
+    "typescript": "^7.0.2"
+  },
+  "packageManager": "pnpm@12.4.1"
+}

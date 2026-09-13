@@ -13,3 +13,10 @@ exclude:
   - CLAUDE.md
   - vendor
   - mise.toml
+  # TypeScript toolchain: only the compiled js/*.js is served.
+  - node_modules
+  - package.json
+  - pnpm-lock.yaml
+  - tsconfig.json
+  - src
+  - "js/**/*.d.ts"

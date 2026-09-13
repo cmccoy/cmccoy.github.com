@@ -1,0 +1,25 @@
+{
+  // Compiles js/*.ts in place to sibling .js files that the browser loads as
+  // native ES modules (no bundler). The vendored Preact/htm builds in js/vendor
+  // are imported by relative path; sibling .d.ts shims give them types from the
+  // matching npm packages (devDependencies, types only).
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "rootDir": "src",
+    "outDir": "js",
+    // Classic JSX transform: emits h()/Fragment calls against the vendored
+    // Preact import already in scope, so no jsx-runtime module is needed.
+    "jsx": "react",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noEmitOnError": true,
+    "skipLibCheck": true,
+    "types": []
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
+}

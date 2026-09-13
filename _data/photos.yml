@@ -1,0 +1,58 @@
+# Photos shown in the home-page strip. Add entries with bin/photos.
+#
+# Optional `group`: photos sharing a group never appear in the strip together.
+# The no-JS fallback shows the first four entries, so keep those group-distinct.
+- slug: coldai
+  caption: "Lago Coldai, Dolomites, August 2026"
+  alt: "Two hikers descending a rocky trail toward a small turquoise alpine lake beneath grey limestone cliffs"
+  width: 1600
+  height: 1204
+  group: dolomites
+- slug: coledale
+  caption: "Heather above Coledale, Lake District, August 2026"
+  alt: "A stony path along a ridge through blooming purple heather, with rolling fells beyond"
+  width: 1600
+  height: 1204
+- slug: seuss-flower-orb
+  caption: "A Seuss flower"
+  alt: "A fluffy, Dr. Seuss-like flower seed head on a tall stem"
+  width: 1205
+  height: 1600
+  group: flower
+- slug: larches
+  caption: "Larches on the Angel's Staircase loop, Methow Valley, October 2025"
+  alt: "Two mountain bikers riding singletrack through golden larches and red autumn ground cover"
+  width: 1204
+  height: 1600
+- slug: seuss-flower-wisp
+  caption: "A Seuss flower, windblown"
+  alt: "A fluffy, Dr. Seuss-like flower seed head with wild flowing tendrils"
+  width: 1205
+  height: 1600
+  group: flower
+- slug: cooney-lake
+  caption: "Cooney Lake, Sawtooth Range, October 2025"
+  alt: "A small alpine lake reflecting clouds, ringed by golden larches, seen from a talus slope above"
+  width: 1204
+  height: 1600
+- slug: patagonia-mud
+  caption: "Peanut butter mud near Patagonia, Arizona, December 2025"
+  alt: "A blue gravel bike's front wheel and fork caked in thick red-brown mud"
+  width: 1600
+  height: 1204
+- slug: ferns
+  caption: "Sword ferns near Issaquah, December 2025"
+  alt: "A dirt trail through dense sword ferns under mossy second-growth conifers"
+  width: 1204
+  height: 1600
+- slug: tofana
+  caption: "Below Tofana di Rozes, Dolomites, August 2026"
+  alt: "A panorama of scree slopes and pale limestone peaks with a green valley far below"
+  width: 1600
+  height: 687
+  group: dolomites
+- slug: alleghe
+  caption: "Lago di Alleghe at dusk, August 2026"
+  alt: "A rowboat tied to a wooden dock on a still lake reflecting pink evening clouds and mountains"
+  width: 1204
+  height: 1600
