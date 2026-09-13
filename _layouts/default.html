@@ -9,7 +9,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..500;1,9..40,300..500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
+  {%- comment -%}
+    ?v=<build time> busts the 10-minute GitHub Pages cache on every deploy, so a
+    fresh index.html never pairs with a stale stylesheet or script.
+  {%- endcomment %}
+  <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 </head>
 <body>
   <main>

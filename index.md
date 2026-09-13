@@ -24,4 +24,4 @@ Outside of work, I am married to the amazing [Cate](https://www.benaroyaresearch
 </ul>
 </div>
 <script type="application/json" id="photo-strip-data">{{ site.data.photos | jsonify }}</script>
-<script type="module" src="/js/photo-strip.js"></script>
+<script type="module" src="/js/photo-strip.js?v={{ site.time | date: '%s' }}"></script>
