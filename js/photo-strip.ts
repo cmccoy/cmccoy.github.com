@@ -30,21 +30,20 @@ function dayOfYear(d: Date = new Date()): number {
   return Math.floor((Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) - start) / 86400000);
 }
 
-// Walk the pool (wrapping) from a day-seeded offset, taking up to STRIP_SIZE
-// photos. Photos that share a `group` never appear together: once one is
-// taken, the rest of its group is skipped.
+// Rotate the pool by a day-seeded offset, then take the first STRIP_SIZE
+// photos, skipping any whose `group` is already represented.
 function pick(photos: readonly Photo[]): Photo[] {
-  const offset = photos.length ? dayOfYear() % photos.length : 0;
+  if (photos.length === 0) return [];
+  const offset = dayOfYear() % photos.length;
+  const rotated = [...photos.slice(offset), ...photos.slice(0, offset)];
+
   const chosen: Photo[] = [];
-  const groups = new Set<string>();
-  for (let i = 0; i < photos.length && chosen.length < STRIP_SIZE; i++) {
-    const p = photos[(offset + i) % photos.length];
-    if (!p) continue;
-    if (p.group) {
-      if (groups.has(p.group)) continue;
-      groups.add(p.group);
-    }
-    chosen.push(p);
+  const seen = new Set<string>();
+  for (const photo of rotated) {
+    if (chosen.length === STRIP_SIZE) break;
+    if (photo.group && seen.has(photo.group)) continue;
+    if (photo.group) seen.add(photo.group);
+    chosen.push(photo);
   }
   return chosen;
 }
