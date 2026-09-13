@@ -7,6 +7,7 @@
   alt: "Two hikers descending a rocky trail toward a small turquoise alpine lake beneath grey limestone cliffs"
   width: 1600
   height: 1204
+  group: dolomites
 - slug: coledale
   caption: "Heather above Coledale, Lake District, August 2026"
   alt: "A stony path along a ridge through blooming purple heather, with rolling fells beyond"
@@ -49,6 +50,7 @@
   alt: "A panorama of scree slopes and pale limestone peaks with a green valley far below"
   width: 1600
   height: 687
+  group: dolomites
 - slug: alleghe
   caption: "Lago di Alleghe at dusk, August 2026"
   alt: "A rowboat tied to a wooden dock on a still lake reflecting pink evening clouds and mountains"
