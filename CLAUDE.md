@@ -62,7 +62,9 @@ bin/photos add ~/Downloads/IMG_1234.jpg some-slug "Caption, Month Year" "Alt tex
 This writes `assets/photos/<slug>.webp` (1600px long edge) and `<slug>-thumb.webp`
 (480px centre-cropped square), strips all metadata including GPS, and appends an entry
 to `_data/photos.yml`. Only the derivatives are committed; keep originals elsewhere.
-Reorder or edit captions in the YAML by hand.
+Reorder or edit captions in the YAML by hand. An optional `group:` key keeps similar
+photos (e.g. the two Seuss flowers) from ever appearing in the strip together; keep the
+first four entries group-distinct since the no-JS fallback shows them as-is.
 
 ## Vendored JS dependencies
 

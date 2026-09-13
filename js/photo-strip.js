@@ -17,11 +17,22 @@ function dayOfYear(d = new Date()) {
   return Math.floor((Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) - start) / 86400000);
 }
 
-// Take STRIP_SIZE consecutive photos (wrapping) starting at a day-seeded offset.
+// Walk the pool (wrapping) from a day-seeded offset, taking up to STRIP_SIZE
+// photos. Photos that share a `group` never appear together: once one is
+// taken, the rest of its group is skipped.
 function pick(photos) {
-  const n = Math.min(STRIP_SIZE, photos.length);
   const offset = photos.length ? dayOfYear() % photos.length : 0;
-  return Array.from({ length: n }, (_, i) => photos[(offset + i) % photos.length]);
+  const chosen = [];
+  const groups = new Set();
+  for (let i = 0; i < photos.length && chosen.length < STRIP_SIZE; i++) {
+    const p = photos[(offset + i) % photos.length];
+    if (p.group) {
+      if (groups.has(p.group)) continue;
+      groups.add(p.group);
+    }
+    chosen.push(p);
+  }
+  return chosen;
 }
 
 function Lightbox({ photo, onClose }) {
