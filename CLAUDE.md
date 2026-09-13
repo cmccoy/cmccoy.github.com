@@ -25,9 +25,20 @@ Requires Ruby 4.0 (see `.ruby-version`; macOS system Ruby is too old). Install v
 
 ```bash
 bundle install
+pnpm install && pnpm build  # compiles js/photo-strip.ts → js/photo-strip.js (gitignored)
 bundle exec jekyll serve    # http://localhost:4000, live reload
 bundle exec jekyll build    # renders into _site/ (gitignored)
 ```
+
+### TypeScript
+
+The home-page script is written in TypeScript (`js/photo-strip.ts`) and compiled in place
+to `js/photo-strip.js` by `tsc` (`pnpm build`; `pnpm check` type-checks only). The compiled
+file is gitignored and built in CI before Jekyll runs, so **run `pnpm build` after editing
+the `.ts` or the page will 404 the script locally**. Node/pnpm versions are pinned in
+`mise.toml`. There is no bundler: output is a native ES module that imports the vendored
+libraries by relative path, and sibling `.d.ts` shims in `js/vendor/` supply their types
+from the `preact`/`htm` devDependencies (types only, never shipped).
 
 ## Deployment
 
@@ -43,7 +54,7 @@ step needed.
 - `_layouts/default.html` — the only layout; wraps `{{ content }}` in `<main>` and links `css/style.css`.
 - `css/style.css` — small, hand-written stylesheet (system fonts, centered column, `prefers-color-scheme` dark support).
 - `404.html` — custom not-found page (also uses `layout: default`).
-- `js/photo-strip.js` — a small [Preact](https://preactjs.com/) + [htm](https://github.com/developit/htm) enhancement on the home page; see “Photo strip” below.
+- `js/photo-strip.ts` — a small [Preact](https://preactjs.com/) + [htm](https://github.com/developit/htm) enhancement on the home page, compiled to `js/photo-strip.js`; see “Photo strip” and “TypeScript” above.
 - `js/vendor/` — vendored (self-hosted) copies of Preact and htm; see “Vendored JS dependencies” below.
 - `_data/photos.yml` + `assets/photos/` — the photo pool and its WebP derivatives, managed by `bin/photos`.
 

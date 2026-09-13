@@ -5,6 +5,8 @@
 // markup with a rotating selection (seeded by the day of the year, so the page
 // is stable within a day but changes over the week) and opens photos in a
 // native <dialog> instead of navigating away.
+//
+// Source of truth for js/photo-strip.js — build with `pnpm build`.
 import { h, render } from "./vendor/preact-10.29.8.module.js";
 import { useEffect, useRef, useState } from "./vendor/preact-hooks-10.29.8.module.js";
 import htm from "./vendor/htm-3.1.1.module.js";
@@ -12,7 +14,18 @@ import htm from "./vendor/htm-3.1.1.module.js";
 const html = htm.bind(h);
 const STRIP_SIZE = 4;
 
-function dayOfYear(d = new Date()) {
+/** One entry of _data/photos.yml, as serialised into #photo-strip-data. */
+interface Photo {
+  slug: string;
+  caption: string;
+  alt: string;
+  width: number;
+  height: number;
+  /** Photos sharing a group never appear in the strip together. */
+  group?: string;
+}
+
+function dayOfYear(d: Date = new Date()): number {
   const start = Date.UTC(d.getFullYear(), 0, 1);
   return Math.floor((Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) - start) / 86400000);
 }
@@ -20,12 +33,13 @@ function dayOfYear(d = new Date()) {
 // Walk the pool (wrapping) from a day-seeded offset, taking up to STRIP_SIZE
 // photos. Photos that share a `group` never appear together: once one is
 // taken, the rest of its group is skipped.
-function pick(photos) {
+function pick(photos: readonly Photo[]): Photo[] {
   const offset = photos.length ? dayOfYear() % photos.length : 0;
-  const chosen = [];
-  const groups = new Set();
+  const chosen: Photo[] = [];
+  const groups = new Set<string>();
   for (let i = 0; i < photos.length && chosen.length < STRIP_SIZE; i++) {
     const p = photos[(offset + i) % photos.length];
+    if (!p) continue;
     if (p.group) {
       if (groups.has(p.group)) continue;
       groups.add(p.group);
@@ -35,8 +49,13 @@ function pick(photos) {
   return chosen;
 }
 
-function Lightbox({ photo, onClose }) {
-  const ref = useRef(null);
+interface LightboxProps {
+  photo: Photo | null;
+  onClose: () => void;
+}
+
+function Lightbox({ photo, onClose }: LightboxProps) {
+  const ref = useRef<HTMLDialogElement>(null);
   useEffect(() => {
     const dialog = ref.current;
     if (!dialog) return;
@@ -45,7 +64,7 @@ function Lightbox({ photo, onClose }) {
   }, [photo]);
 
   // Close when the backdrop (the dialog element itself, not its child) is clicked.
-  const onClick = (e) => { if (e.target === ref.current) onClose(); };
+  const onClick = (e: MouseEvent) => { if (e.target === ref.current) onClose(); };
 
   return html`
     <dialog class="lightbox" ref=${ref} onClose=${onClose} onClick=${onClick}>
@@ -59,9 +78,9 @@ function Lightbox({ photo, onClose }) {
     </dialog>`;
 }
 
-function PhotoStrip({ photos }) {
+function PhotoStrip({ photos }: { photos: readonly Photo[] }) {
   const [shown] = useState(() => pick(photos));
-  const [open, setOpen] = useState(null);
+  const [open, setOpen] = useState<Photo | null>(null);
   return html`
     <ul class="photo-strip" style=${{ "--count": shown.length }}>
       ${shown.map((p) => html`
@@ -78,6 +97,6 @@ function PhotoStrip({ photos }) {
 const container = document.getElementById("photo-strip-root");
 const data = document.getElementById("photo-strip-data");
 if (container && data) {
-  const photos = JSON.parse(data.textContent);
+  const photos = JSON.parse(data.textContent ?? "[]") as Photo[];
   if (photos.length) render(html`<${PhotoStrip} photos=${photos} />`, container);
 }

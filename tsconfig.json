@@ -1,0 +1,22 @@
+{
+  // Compiles js/*.ts in place to sibling .js files that the browser loads as
+  // native ES modules (no bundler). The vendored Preact/htm builds in js/vendor
+  // are imported by relative path; sibling .d.ts shims give them types from the
+  // matching npm packages (devDependencies, types only).
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "rootDir": "js",
+    "outDir": "js",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noEmitOnError": true,
+    "skipLibCheck": true,
+    "types": []
+  },
+  "include": ["js/**/*.ts"],
+  // Explicit so tsc doesn't auto-exclude outDir (which is also the source dir).
+  "exclude": ["node_modules"]
+}

@@ -15,10 +15,11 @@
   // 1. Install mise to ~/.local/bin/mise (the path Ruby LSP searches).
   // 2. mise install reads .ruby-version and installs the matching Ruby.
   // 3. bundle install fetches gems into the container.
-  // mise exec -- injects mise's environment (Ruby shims on PATH) without requiring the shell
-  // to have sourced the mise activation script. Needed because postCreateCommand and
+  // 4. pnpm install + build compiles js/*.ts (mise.toml also pins node and pnpm).
+  // mise exec -- injects mise's environment (Ruby/Node shims on PATH) without requiring the
+  // shell to have sourced the mise activation script. Needed because postCreateCommand and
   // postAttachCommand run in a plain /bin/sh with no ~/.bashrc sourced.
-  "postCreateCommand": "curl https://mise.run | sh && ~/.local/bin/mise trust && ~/.local/bin/mise install && ~/.local/bin/mise exec -- bundle install",
+  "postCreateCommand": "curl https://mise.run | sh && ~/.local/bin/mise trust && ~/.local/bin/mise install && ~/.local/bin/mise exec -- bundle install && ~/.local/bin/mise exec -- pnpm install --frozen-lockfile && ~/.local/bin/mise exec -- pnpm build",
 
   // Auto-serve the site with live reload when you attach. Remove if you'd rather start it manually.
   "postAttachCommand": "~/.local/bin/mise exec -- bundle exec jekyll serve --host 0.0.0.0 --livereload",
