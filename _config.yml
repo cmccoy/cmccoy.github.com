@@ -12,3 +12,4 @@ exclude:
   - README.md
   - CLAUDE.md
   - vendor
+  - mise.toml
