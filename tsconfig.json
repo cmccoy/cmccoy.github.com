@@ -8,15 +8,18 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "rootDir": "js",
+    "rootDir": "src",
     "outDir": "js",
+    // Classic JSX transform: emits h()/Fragment calls against the vendored
+    // Preact import already in scope, so no jsx-runtime module is needed.
+    "jsx": "react",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "noEmitOnError": true,
     "skipLibCheck": true,
     "types": []
   },
-  "include": ["js/**/*.ts"],
-  // Explicit so tsc doesn't auto-exclude outDir (which is also the source dir).
-  "exclude": ["node_modules"]
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
 }

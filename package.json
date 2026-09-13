@@ -7,8 +7,8 @@
     "check": "tsc --noEmit"
   },
   "devDependencies": {
-    "htm": "3.1.1",
     "preact": "10.29.8",
     "typescript": "^7.0.2"
-  }
+  },
+  "packageManager": "pnpm@12.4.1"
 }

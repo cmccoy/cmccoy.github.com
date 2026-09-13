@@ -25,20 +25,21 @@ Requires Ruby 4.0 (see `.ruby-version`; macOS system Ruby is too old). Install v
 
 ```bash
 bundle install
-pnpm install && pnpm build  # compiles js/photo-strip.ts → js/photo-strip.js (gitignored)
+pnpm install && pnpm build  # compiles src/photo-strip.tsx → js/photo-strip.js (gitignored)
 bundle exec jekyll serve    # http://localhost:4000, live reload
 bundle exec jekyll build    # renders into _site/ (gitignored)
 ```
 
 ### TypeScript
 
-The home-page script is written in TypeScript (`js/photo-strip.ts`) and compiled in place
-to `js/photo-strip.js` by `tsc` (`pnpm build`; `pnpm check` type-checks only). The compiled
-file is gitignored and built in CI before Jekyll runs, so **run `pnpm build` after editing
-the `.ts` or the page will 404 the script locally**. Node/pnpm versions are pinned in
-`mise.toml`. There is no bundler: output is a native ES module that imports the vendored
-libraries by relative path, and sibling `.d.ts` shims in `js/vendor/` supply their types
-from the `preact`/`htm` devDependencies (types only, never shipped).
+The home-page script is written in TypeScript with JSX (`src/photo-strip.tsx`) and compiled
+to `js/photo-strip.js` by `tsc` (`pnpm build`; `pnpm check` type-checks only). The
+compiled file is gitignored and built in CI before Jekyll runs, so **run `pnpm build` after
+editing `src/` or the page will 404 the script locally**. Node/pnpm versions are pinned
+in `mise.toml` and `package.json`. There is no bundler: JSX uses the classic transform
+(`jsxFactory: h`), so output is a native ES module of plain `h()` calls that imports the
+vendored Preact by relative path. Sibling `.d.ts` shims in `js/vendor/` supply its types
+from the `preact` devDependency (types only, never shipped).
 
 ## Deployment
 
@@ -54,8 +55,8 @@ step needed.
 - `_layouts/default.html` — the only layout; wraps `{{ content }}` in `<main>` and links `css/style.css`.
 - `css/style.css` — small, hand-written stylesheet (system fonts, centered column, `prefers-color-scheme` dark support).
 - `404.html` — custom not-found page (also uses `layout: default`).
-- `js/photo-strip.ts` — a small [Preact](https://preactjs.com/) + [htm](https://github.com/developit/htm) enhancement on the home page, compiled to `js/photo-strip.js`; see “Photo strip” and “TypeScript” above.
-- `js/vendor/` — vendored (self-hosted) copies of Preact and htm; see “Vendored JS dependencies” below.
+- `src/photo-strip.tsx` — a small [Preact](https://preactjs.com/) enhancement on the home page, compiled to `js/photo-strip.js`; see “Photo strip” and “TypeScript” above.
+- `js/vendor/` — vendored (self-hosted) copies of Preact and its hooks; see “Vendored JS dependencies” below.
 - `_data/photos.yml` + `assets/photos/` — the photo pool and its WebP derivatives, managed by `bin/photos`.
 
 ## Photo strip
@@ -79,14 +80,14 @@ first four entries group-distinct since the no-JS fallback shows them as-is.
 
 ## Vendored JS dependencies
 
-The interactive pieces use Preact + htm as ESM modules **vendored into `js/vendor/`** rather than loaded from a CDN. This keeps the site fully self-contained: no third-party runtime dependency, no visitor requests leaking to a CDN, and nothing that can break the page if a CDN has an outage. (A shared cross-site CDN cache no longer helps anyway — modern browsers partition the HTTP cache per site.) The libraries are tiny (~16 KB total) and rarely change, so manual updates are cheap.
+The interactive pieces use Preact (core + hooks) as ESM modules **vendored into `js/vendor/`** rather than loaded from a CDN. This keeps the site fully self-contained: no third-party runtime dependency, no visitor requests leaking to a CDN, and nothing that can break the page if a CDN has an outage. (A shared cross-site CDN cache no longer helps anyway — modern browsers partition the HTTP cache per site.) The library is tiny (~15 KB) and rarely changes, so manual updates are cheap. Templating is JSX compiled away at build time, so there is no template runtime to vendor.
 
 Conventions:
 
 - Filenames are **version-pinned** (e.g. `preact-10.29.8.module.js`). This self-documents the version and acts as automatic cache-busting: a new version is a new URL, so browsers never serve a stale file.
 - Each file keeps a provenance/license header. Files are the package's published **ESM build** (`dist/*.module.js`), copied verbatim except for one rewrite below. Do not hand-edit them otherwise.
 - `preact/hooks` ships with a bare `import … from "preact"`; browsers can't resolve bare specifiers without an import map, so it's rewritten to the relative vendored path (`./preact-<ver>.module.js`).
-- Import paths live in `js/seuss-flower.js` (relative to that file, so `./vendor/…`).
+- Import paths live in `src/photo-strip.tsx` (relative to that file, so `../js/vendor/…`, which also resolves from the compiled `js/photo-strip.js`). Each vendored file has a sibling `.d.ts` re-exporting types from the matching npm package; keep the version in `package.json` in step with the vendored file.
 
 To update a vendored library (the host CDNs may be blocked in sandboxes, so pull from the npm registry directly):
 
@@ -97,10 +98,9 @@ To update a vendored library (the host CDNs may be blocked in sandboxes, so pull
 3. Copy the ESM build into `js/vendor/` with a version-pinned name, prepend the provenance/license header, and (for `hooks`) rewrite `from"preact"` to the relative path of the new core file. Use:
    - `package/dist/preact.module.js` → `js/vendor/preact-<ver>.module.js`
    - `package/hooks/dist/hooks.module.js` → `js/vendor/preact-hooks-<ver>.module.js`
-   - htm: `package/dist/htm.module.js` → `js/vendor/htm-<ver>.module.js`
-4. Update the `import` paths at the top of `js/seuss-flower.js` and delete the old version files.
-5. Verify the graph resolves before committing (no DOM needed):
-   `node --input-type=module -e 'import {h,render} from "./js/vendor/preact-<ver>.module.js"; import {useState} from "./js/vendor/preact-hooks-<ver>.module.js"; import htm from "./js/vendor/htm-<ver>.module.js"; console.log("ok", typeof h, typeof render, typeof useState, typeof htm)'`
+4. Rename the `.d.ts` shims to match, update the `import` paths at the top of `src/photo-strip.tsx`, bump `preact` in `package.json` (`pnpm install`), and delete the old version files.
+5. Verify the graph resolves and the types still check before committing (no DOM needed):
+   `node --input-type=module -e 'import {h,render} from "./js/vendor/preact-<ver>.module.js"; import {useState} from "./js/vendor/preact-hooks-<ver>.module.js"; console.log("ok", typeof h, typeof render, typeof useState)'` and `pnpm check`.
 
 ## Notes
 

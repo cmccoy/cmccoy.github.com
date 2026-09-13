@@ -15,7 +15,7 @@
   // 1. Install mise to ~/.local/bin/mise (the path Ruby LSP searches).
   // 2. mise install reads .ruby-version and installs the matching Ruby.
   // 3. bundle install fetches gems into the container.
-  // 4. pnpm install + build compiles js/*.ts (mise.toml also pins node and pnpm).
+  // 4. pnpm install + build compiles src/ (mise.toml also pins node and pnpm).
   // mise exec -- injects mise's environment (Ruby/Node shims on PATH) without requiring the
   // shell to have sourced the mise activation script. Needed because postCreateCommand and
   // postAttachCommand run in a plain /bin/sh with no ~/.bashrc sourced.
