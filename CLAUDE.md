@@ -43,8 +43,26 @@ step needed.
 - `_layouts/default.html` — the only layout; wraps `{{ content }}` in `<main>` and links `css/style.css`.
 - `css/style.css` — small, hand-written stylesheet (system fonts, centered column, `prefers-color-scheme` dark support).
 - `404.html` — custom not-found page (also uses `layout: default`).
-- `js/seuss-flower.js` — a small [Preact](https://preactjs.com/) + [htm](https://github.com/developit/htm) enhancement on the home page.
+- `js/photo-strip.js` — a small [Preact](https://preactjs.com/) + [htm](https://github.com/developit/htm) enhancement on the home page; see “Photo strip” below.
 - `js/vendor/` — vendored (self-hosted) copies of Preact and htm; see “Vendored JS dependencies” below.
+- `_data/photos.yml` + `assets/photos/` — the photo pool and its WebP derivatives, managed by `bin/photos`.
+
+## Photo strip
+
+The home page ends with a row of four square thumbnails drawn from `_data/photos.yml`.
+Jekyll renders the first four as plain links (works without JS); `js/photo-strip.js`
+then swaps in a day-of-year-rotated selection and opens photos in a native `<dialog>`.
+
+To add a photo (needs `cwebp`, `brew install webp`):
+
+```bash
+bin/photos add ~/Downloads/IMG_1234.jpg some-slug "Caption, Month Year" "Alt text"
+```
+
+This writes `assets/photos/<slug>.webp` (1600px long edge) and `<slug>-thumb.webp`
+(480px centre-cropped square), strips all metadata including GPS, and appends an entry
+to `_data/photos.yml`. Only the derivatives are committed; keep originals elsewhere.
+Reorder or edit captions in the YAML by hand.
 
 ## Vendored JS dependencies
 

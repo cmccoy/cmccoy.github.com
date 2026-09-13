@@ -107,10 +107,100 @@ li a::after {
   margin: 1.5rem 0;
 }
 
-.photo {
-  width: 280px;
-  max-width: 100%;
-  border-radius: 6px;
-  margin: 1.5rem auto;
+/* Photo strip: a row of square thumbnails; --count is set by the markup. */
+.photo-strip {
+  display: grid;
+  grid-template-columns: repeat(var(--count, 4), 1fr);
+  gap: 0.6rem;
+  margin: 2.5rem 0 0;
+}
+
+.photo-strip li {
+  margin: 0;
+}
+
+.photo-strip a,
+.photo-strip button {
   display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  border-radius: 6px;
+  overflow: hidden;
+  aspect-ratio: 1;
+  color: inherit;
+  font: inherit;
+}
+
+.photo-strip a::after {
+  content: none;
+}
+
+.photo-strip a:focus-visible,
+.photo-strip button:focus-visible {
+  outline: 2px solid var(--link-underline-hover);
+  outline-offset: 3px;
+}
+
+.photo-strip img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease, filter 0.3s ease;
+}
+
+.photo-strip a:hover img,
+.photo-strip button:hover img {
+  transform: scale(1.03);
+}
+
+@media (prefers-color-scheme: dark) {
+  .photo-strip img { filter: brightness(0.9); }
+  .photo-strip a:hover img,
+  .photo-strip button:hover img { filter: brightness(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-strip img { transition: none; }
+  .photo-strip a:hover img,
+  .photo-strip button:hover img { transform: none; }
+}
+
+/* Full-size view in a native <dialog>. */
+.lightbox {
+  border: 0;
+  padding: 0;
+  margin: auto;
+  max-width: min(92vw, 1100px);
+  max-height: 92vh;
+  background: transparent;
+  color: var(--bg);
+}
+
+.lightbox::backdrop {
+  background: rgba(20, 18, 14, 0.9);
+}
+
+.lightbox figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.lightbox img {
+  display: block;
+  max-width: 92vw;
+  max-height: calc(92vh - 2.5rem);
+  width: auto;
+  height: auto;
+  border-radius: 6px;
+}
+
+.lightbox figcaption {
+  font-size: 0.85rem;
+  color: #c9c3b8;
 }

@@ -1,0 +1,21 @@
+# Photos shown in the home-page strip. Add entries with bin/photos.
+- slug: coldai
+  caption: "Lago Coldai, Dolomites, August 2026"
+  alt: "Two hikers descending a rocky trail toward a small turquoise alpine lake beneath grey limestone cliffs"
+  width: 1600
+  height: 1204
+- slug: coledale
+  caption: "Heather above Coledale, Lake District, August 2026"
+  alt: "A stony path along a ridge through blooming purple heather, with rolling fells beyond"
+  width: 1600
+  height: 1204
+- slug: seuss-flower-orb
+  caption: "A Seuss flower"
+  alt: "A fluffy, Dr. Seuss-like flower seed head on a tall stem"
+  width: 1205
+  height: 1600
+- slug: seuss-flower-wisp
+  caption: "A Seuss flower, windblown"
+  alt: "A fluffy, Dr. Seuss-like flower seed head with wild flowing tendrils"
+  width: 1205
+  height: 1600
