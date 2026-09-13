@@ -43,7 +43,7 @@ step needed.
 - `_layouts/default.html` — the only layout; wraps `{{ content }}` in `<main>` and links `css/style.css`.
 - `css/style.css` — small, hand-written stylesheet (system fonts, centered column, `prefers-color-scheme` dark support).
 - `404.html` — custom not-found page (also uses `layout: default`).
-- `world-cup-watchability.md` — spoiler-free World Cup 2026 watchability guide. Match data lives in `_data/world_cup.yml`; the page server-renders a static fallback list via Liquid and embeds the data as JSON, then `js/world-cup.js` progressively enhances it into a filterable/searchable [Preact](https://preactjs.com/) + [htm](https://github.com/developit/htm) app.
+- `js/index.js`, `js/seuss-flower.js` — small [Preact](https://preactjs.com/) + [htm](https://github.com/developit/htm) enhancements on the home page.
 - `js/vendor/` — vendored (self-hosted) copies of Preact and htm; see “Vendored JS dependencies” below.
 
 ## Vendored JS dependencies
@@ -55,7 +55,7 @@ Conventions:
 - Filenames are **version-pinned** (e.g. `preact-10.29.2.module.js`). This self-documents the version and acts as automatic cache-busting: a new version is a new URL, so browsers never serve a stale file.
 - Each file keeps a provenance/license header. Files are the package's published **ESM build** (`dist/*.module.js`), copied verbatim except for one rewrite below. Do not hand-edit them otherwise.
 - `preact/hooks` ships with a bare `import … from "preact"`; browsers can't resolve bare specifiers without an import map, so it's rewritten to the relative vendored path (`./preact-<ver>.module.js`).
-- Import paths live in `js/world-cup.js` (relative to that file, so `./vendor/…`).
+- Import paths live in `js/index.js` and `js/seuss-flower.js` (relative to those files, so `./vendor/…`).
 
 To update a vendored library (the host CDNs may be blocked in sandboxes, so pull from the npm registry directly):
 
@@ -67,7 +67,7 @@ To update a vendored library (the host CDNs may be blocked in sandboxes, so pull
    - `package/dist/preact.module.js` → `js/vendor/preact-<ver>.module.js`
    - `package/hooks/dist/hooks.module.js` → `js/vendor/preact-hooks-<ver>.module.js`
    - htm: `package/dist/htm.module.js` → `js/vendor/htm-<ver>.module.js`
-4. Update the three `import` paths at the top of `js/world-cup.js` and delete the old version files.
+4. Update the `import` paths at the top of `js/index.js` and `js/seuss-flower.js` and delete the old version files.
 5. Verify the graph resolves before committing (no DOM needed):
    `node --input-type=module -e 'import {h,render} from "./js/vendor/preact-<ver>.module.js"; import {useState} from "./js/vendor/preact-hooks-<ver>.module.js"; import htm from "./js/vendor/htm-<ver>.module.js"; console.log("ok", typeof h, typeof render, typeof useState, typeof htm)'`
 
