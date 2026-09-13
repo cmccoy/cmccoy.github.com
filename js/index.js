@@ -1,7 +1,7 @@
 // Cheeky hover sidebars for the home page.
 // On link hover, shows a small aside note to the right of the main column.
-import { h, render } from "./vendor/preact-10.29.2.module.js";
-import { useState, useEffect } from "./vendor/preact-hooks-10.29.2.module.js";
+import { h, render } from "./vendor/preact-10.29.8.module.js";
+import { useState, useEffect } from "./vendor/preact-hooks-10.29.8.module.js";
 import htm from "./vendor/htm-3.1.1.module.js";
 
 const html = htm.bind(h);

@@ -52,7 +52,7 @@ The interactive pieces use Preact + htm as ESM modules **vendored into `js/vendo
 
 Conventions:
 
-- Filenames are **version-pinned** (e.g. `preact-10.29.2.module.js`). This self-documents the version and acts as automatic cache-busting: a new version is a new URL, so browsers never serve a stale file.
+- Filenames are **version-pinned** (e.g. `preact-10.29.8.module.js`). This self-documents the version and acts as automatic cache-busting: a new version is a new URL, so browsers never serve a stale file.
 - Each file keeps a provenance/license header. Files are the package's published **ESM build** (`dist/*.module.js`), copied verbatim except for one rewrite below. Do not hand-edit them otherwise.
 - `preact/hooks` ships with a bare `import … from "preact"`; browsers can't resolve bare specifiers without an import map, so it's rewritten to the relative vendored path (`./preact-<ver>.module.js`).
 - Import paths live in `js/index.js` and `js/seuss-flower.js` (relative to those files, so `./vendor/…`).
