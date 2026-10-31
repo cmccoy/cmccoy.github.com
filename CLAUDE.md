@@ -58,12 +58,15 @@ step needed.
 - `src/photo-strip.tsx` — a small [Preact](https://preactjs.com/) enhancement on the home page, compiled to `js/photo-strip.js`; see “Photo strip” and “TypeScript” above.
 - `js/vendor/` — vendored (self-hosted) copies of Preact and its hooks; see “Vendored JS dependencies” below.
 - `_data/photos.yml` + `assets/photos/` — the photo pool and its WebP derivatives, managed by `bin/photos`.
+- `fonts/` — self-hosted DM Sans (variable `opsz`+`wght`, latin subset, from the `@fontsource-variable/dm-sans` npm tarball) plus its OFL license; version-pinned filename like the vendored JS. No Google Fonts request.
+- `favicon.svg` — "cm" monogram that follows `prefers-color-scheme`. The layout also emits canonical, `theme-color`, and Open Graph tags (`og:image` is the first photo in `_data/photos.yml`).
 
 ## Photo strip
 
 The home page ends with a row of four square thumbnails drawn from `_data/photos.yml`.
 Jekyll renders the first four as plain links (works without JS); `js/photo-strip.js`
-then swaps in a day-of-year-rotated selection and opens photos in a native `<dialog>`.
+then swaps in a day-of-year-rotated selection and opens photos in a native `<dialog>`
+where the whole pool can be browsed (←/→ keys, on-screen buttons, or swipe).
 
 To add a photo (needs `cwebp`, `brew install webp`):
 
