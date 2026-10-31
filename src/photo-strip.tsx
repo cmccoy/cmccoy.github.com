@@ -4,7 +4,8 @@
 // strip works without JavaScript. When this module loads it replaces that
 // markup with a rotating selection (seeded by the day of the year, so the page
 // is stable within a day but changes over the week) and opens photos in a
-// native <dialog> instead of navigating away.
+// native <dialog> instead of navigating away, where the whole pool can be
+// browsed.
 //
 // Source of truth for js/photo-strip.js — build with `pnpm build`. JSX is
 // compiled to plain h() calls against the vendored Preact build (no runtime).
@@ -53,14 +54,24 @@ export function pick(photos: readonly Photo[], today: Date): Photo[] {
 }
 
 interface LightboxProps {
-  photo: Photo | null;
-  onClose: () => void;
+  photos: readonly Photo[];
+  /** Index into `photos` of the photo on show, or null when closed. */
+  index: number | null;
+  onChange: (index: number | null) => void;
 }
 
-function Lightbox({ photo, onClose }: LightboxProps) {
-  const ref = useRef<HTMLDialogElement>(null);
+const SWIPE_PX = 40;
 
-  // Keep the native dialog's open state in sync with `photo`.
+// Full-size view of the whole pool (not just the strip), browsable with the
+// arrow keys, the on-screen buttons, or a horizontal swipe.
+function Lightbox({ photos, index, onChange }: LightboxProps) {
+  const ref = useRef<HTMLDialogElement>(null);
+  const touchX = useRef<number | null>(null);
+  const photo = index === null ? null : photos[index];
+  const n = photos.length;
+  const step = (by: number) => { if (index !== null) onChange((index + by + n) % n); };
+
+  // Keep the native dialog's open state in sync with `index`.
   useEffect(() => {
     const dialog = ref.current;
     if (!dialog || dialog.open === Boolean(photo)) return;
@@ -68,20 +79,52 @@ function Lightbox({ photo, onClose }: LightboxProps) {
     else dialog.close();
   }, [photo]);
 
+  // Warm the cache for the neighbours so stepping through feels instant.
+  useEffect(() => {
+    if (index === null || n < 2) return;
+    for (const i of [index + 1, index - 1 + n]) {
+      const next = photos[i % n];
+      if (next) new Image().src = `/assets/photos/${next.slug}.webp`;
+    }
+  }, [index]);
+
   return (
     <dialog
       class="lightbox"
       ref={ref}
       aria-label={photo?.caption}
-      onClose={onClose}
+      onClose={() => onChange(null)}
+      onKeyDown={(e) => {
+        if (e.key === "ArrowRight") step(1);
+        else if (e.key === "ArrowLeft") step(-1);
+      }}
+      onTouchStart={(e) => { touchX.current = e.touches[0]?.clientX ?? null; }}
+      onTouchEnd={(e) => {
+        const start = touchX.current;
+        const end = e.changedTouches[0]?.clientX;
+        touchX.current = null;
+        if (start === null || end === undefined) return;
+        const dx = end - start;
+        if (Math.abs(dx) > SWIPE_PX) step(dx < 0 ? 1 : -1);
+      }}
       // A click on the dialog itself (not its contents) is a backdrop click.
-      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+      onClick={(e) => { if (e.target === e.currentTarget) onChange(null); }}
     >
       {photo && (
         <figure>
-          <img src={`/assets/photos/${photo.slug}.webp`} alt={photo.alt}
+          <img key={photo.slug} src={`/assets/photos/${photo.slug}.webp`} alt={photo.alt}
                width={photo.width} height={photo.height} />
-          <figcaption>{photo.caption}</figcaption>
+          <figcaption>
+            {n > 1 && (
+              <button type="button" class="lightbox-nav" aria-label="Previous photo"
+                      onClick={() => step(-1)}>←</button>
+            )}
+            <span>{photo.caption}</span>
+            {n > 1 && (
+              <button type="button" class="lightbox-nav" aria-label="Next photo"
+                      onClick={() => step(1)}>→</button>
+            )}
+          </figcaption>
         </figure>
       )}
     </dialog>
@@ -90,21 +133,22 @@ function Lightbox({ photo, onClose }: LightboxProps) {
 
 function PhotoStrip({ photos }: { photos: readonly Photo[] }) {
   const [shown] = useState(() => pick(photos, new Date()));
-  const [open, setOpen] = useState<Photo | null>(null);
+  const [open, setOpen] = useState<number | null>(null);
   return (
     <>
       <ul class="photo-strip" style={`--count: ${shown.length}`}>
         {shown.map((p) => (
           <li key={p.slug}>
             {/* The button carries the label, so the thumbnail is decorative. */}
-            <button type="button" aria-label={`View: ${p.caption}`} onClick={() => setOpen(p)}>
+            <button type="button" aria-label={`View: ${p.caption}`}
+                    onClick={() => setOpen(photos.indexOf(p))}>
               <img src={`/assets/photos/${p.slug}-thumb.webp`} alt=""
                    width={480} height={480} loading="lazy" decoding="async" />
             </button>
           </li>
         ))}
       </ul>
-      <Lightbox photo={open} onClose={() => setOpen(null)} />
+      <Lightbox photos={photos} index={open} onChange={setOpen} />
     </>
   );
 }
