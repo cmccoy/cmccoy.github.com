@@ -59,7 +59,7 @@ step needed.
 - `src/ride-wall.tsx` — a faint, slowly drifting range of mountains fixed behind the bottom of the home page: one ridge per bike ride, drawn on a canvas from `assets/rides.json`. That file is generated in the separate `strava` repo by `uv run loam export-site --no-names --out ../cmccoy.github.com/assets/rides.json` (elevation profiles only — no GPS, heart rate, power or ride names). Decorative: `aria-hidden`, no interaction, still under `prefers-reduced-motion`.
 - `js/vendor/` — vendored (self-hosted) copies of Preact and its hooks; see “Vendored JS dependencies” below.
 - `_data/photos.yml` + `assets/photos/` — the photo pool and its WebP derivatives, managed by `bin/photos`.
-- `fonts/` — self-hosted DM Sans (variable `opsz`+`wght`, latin subset, from the `@fontsource-variable/dm-sans` npm tarball) plus its OFL license; version-pinned filename like the vendored JS. No Google Fonts request.
+- `fonts/` — self-hosted DM Sans (variable `opsz`+`wght`, latin subset, from the `@fontsource-variable/dm-sans` npm tarball) plus its OFL license; version-pinned filename like the vendored JS. No Google Fonts request. The `h1` uses Outfit (variable `wght`, latin subset, from `@fontsource-variable/outfit`), self-hosted the same way.
 - `favicon.svg` — "cm" monogram that follows `prefers-color-scheme`. The layout also emits canonical, `theme-color`, and Open Graph tags (`og:image` is the first photo in `_data/photos.yml`).
 
 ## Photo strip

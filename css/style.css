@@ -10,13 +10,25 @@
     U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+/* Outfit (variable: wght), latin subset, self-hosted; headings only. See fonts/Outfit-OFL.txt. */
+@font-face {
+  font-family: "Outfit";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("../fonts/outfit-5.3.0-latin-wght-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
   --fg: #1c1b18;
   --bg: #f8f5f0;
   --muted: #6b6760;
   --link: #1c1b18;
-  --link-underline: #c8b99a;
-  --link-underline-hover: #8c7a60;
+  --link-underline: #9c8866; /* 3.2:1 on --bg */
+  --link-underline-hover: #5e5040;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -25,8 +37,8 @@
     --bg: #171613;
     --muted: #8a8680;
     --link: #ede9e2;
-    --link-underline: #4a4540;
-    --link-underline-hover: #7a7060;
+    --link-underline: #7a7060; /* 3.7:1 on --bg */
+    --link-underline-hover: #b8ab92;
   }
 }
 
@@ -50,12 +62,13 @@ body {
 main {
   max-width: 36rem;
   margin: 0 auto;
-  padding: 5rem 1.5rem 7rem;
+  padding: 5rem 1.5rem 3rem;
 }
 
 h1 {
-  font-size: 1.65rem;
-  font-weight: 450;
+  font-family: "Outfit", "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 2.3rem;
+  font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.2;
   margin: 0 0 2rem;
@@ -90,22 +103,12 @@ li {
   margin: 0.4rem 0;
 }
 
-li a::after {
-  content: " ↗";
-  font-size: 0.8em;
-  opacity: 0.5;
-}
-
 .icon-link {
   display: inline-flex;
   align-items: center;
   text-decoration: none;
   opacity: 0.6;
   transition: opacity 0.15s ease;
-}
-
-.icon-link::after {
-  content: none;
 }
 
 .icon-link:hover {
@@ -145,10 +148,6 @@ li a::after {
   font: inherit;
 }
 
-.photo-strip a::after {
-  content: none;
-}
-
 .photo-strip a:focus-visible,
 .photo-strip button:focus-visible {
   outline: 2px solid var(--link-underline-hover);
@@ -178,6 +177,18 @@ li a::after {
   .photo-strip img { transition: none; }
   .photo-strip a:hover img,
   .photo-strip button:hover img { transform: none; }
+}
+
+/* On phones, four across is ~75px each; go 2×2 so the photos are legible. */
+@media (max-width: 480px) {
+  .photo-strip { grid-template-columns: repeat(2, 1fr); }
+}
+
+.site-footer {
+  /* No rule: the ride-wall ridges behind it already close the page. */
+  margin-top: 2.5rem;
+  font-size: 0.8rem;
+  color: var(--muted);
 }
 
 /* Full-size view in a native <dialog>. */

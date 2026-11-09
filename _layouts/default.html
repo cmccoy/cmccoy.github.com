@@ -18,6 +18,7 @@
   <meta property="og:image" content="{{ '/assets/photos/' | append: site.data.photos[0].slug | append: '.webp' | absolute_url }}">
   {%- endif %}
   <link rel="preload" href="{{ '/fonts/dm-sans-5.3.0-latin-opsz-normal.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ '/fonts/outfit-5.3.0-latin-wght-normal.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
   {%- comment -%}
     ?v=<build time> busts the 10-minute GitHub Pages cache on every deploy, so a
     fresh index.html never pairs with a stale stylesheet or script.
@@ -28,6 +29,7 @@
   <main>
     <h1>{{ page.title | default: site.title }}</h1>
     {{ content }}
+    <footer class="site-footer">© {{ site.time | date: '%Y' }} Connor McCoy</footer>
   </main>
 </body>
 </html>
