@@ -253,3 +253,35 @@ li a::after {
 @media (prefers-reduced-motion: reduce) {
   .lightbox img { animation: none; }
 }
+
+/* Ride wall: a faint range of drifting ride elevation profiles, fixed behind
+   the bottom of the window (src/ride-wall.tsx). The top fades into the page. */
+.ride-wall-backdrop {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: -1;
+  height: 45vh;
+  opacity: 0.4;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 45%);
+  mask-image: linear-gradient(to bottom, transparent, #000 45%);
+}
+
+@media (prefers-color-scheme: dark) {
+  .ride-wall-backdrop { opacity: 0.3; }
+}
+
+.ride-wall {
+  display: block;
+  width: 100%;
+  height: 100%;
+  animation: ride-wall-in 2s ease;
+}
+
+@keyframes ride-wall-in {
+  from { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ride-wall { animation: none; }
+}
