@@ -185,9 +185,8 @@ li {
 }
 
 .site-footer {
-  margin-top: 4.5rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid color-mix(in srgb, var(--muted) 30%, transparent);
+  /* No rule: the ride-wall ridges behind it already close the page. */
+  margin-top: 2.5rem;
   font-size: 0.8rem;
   color: var(--muted);
 }
