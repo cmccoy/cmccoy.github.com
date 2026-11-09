@@ -58,7 +58,7 @@ step needed.
 - `src/photo-strip.tsx` — a small [Preact](https://preactjs.com/) enhancement on the home page, compiled to `js/photo-strip.js`; see “Photo strip” and “TypeScript” above.
 - `js/vendor/` — vendored (self-hosted) copies of Preact and its hooks; see “Vendored JS dependencies” below.
 - `_data/photos.yml` + `assets/photos/` — the photo pool and its WebP derivatives, managed by `bin/photos`.
-- `fonts/` — self-hosted DM Sans (variable `opsz`+`wght`, latin subset, from the `@fontsource-variable/dm-sans` npm tarball) plus its OFL license; version-pinned filename like the vendored JS. No Google Fonts request.
+- `fonts/` — self-hosted DM Sans (variable `opsz`+`wght`, latin subset, from the `@fontsource-variable/dm-sans` npm tarball) plus its OFL license; version-pinned filename like the vendored JS. No Google Fonts request. The `h1` uses Outfit (variable `wght`, latin subset, from `@fontsource-variable/outfit`), self-hosted the same way.
 - `favicon.svg` — "cm" monogram that follows `prefers-color-scheme`. The layout also emits canonical, `theme-color`, and Open Graph tags (`og:image` is the first photo in `_data/photos.yml`).
 
 ## Photo strip
