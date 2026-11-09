@@ -30,7 +30,7 @@ const FAR_Z = 5; // perspective depth of the horizon relative to the front ridge
 const HORIZON = 0.03;
 const GROUND = 0.97; // where the front ridge's baseline sits
 const AMPLITUDE = 0.55; // front-ridge height of a 1,000 m climb
-const RIDES_PER_S = 1 / 4; // on that 1.6:1 canvas; wider ones scale it up
+const RIDES_PER_S = 1 / 10; // on that 1.6:1 canvas; wider ones scale it up
 const EASE_S = 0.6; // time constant for starting and stopping the drift
 
 interface Ridge {
