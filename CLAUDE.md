@@ -56,6 +56,7 @@ step needed.
 - `css/style.css` — small, hand-written stylesheet (system fonts, centered column, `prefers-color-scheme` dark support).
 - `404.html` — custom not-found page (also uses `layout: default`).
 - `src/photo-strip.tsx` — a small [Preact](https://preactjs.com/) enhancement on the home page, compiled to `js/photo-strip.js`; see “Photo strip” and “TypeScript” above.
+- `src/ride-wall.tsx` — a faint, slowly drifting range of mountains fixed behind the bottom of the home page: one ridge per bike ride, drawn on a canvas from `assets/rides.json`. That file is generated in the separate `strava` repo by `uv run loam export-site --no-names --out ../cmccoy.github.com/assets/rides.json` (elevation profiles only — no GPS, heart rate, power or ride names). Decorative: `aria-hidden`, no interaction, still under `prefers-reduced-motion`.
 - `js/vendor/` — vendored (self-hosted) copies of Preact and its hooks; see “Vendored JS dependencies” below.
 - `_data/photos.yml` + `assets/photos/` — the photo pool and its WebP derivatives, managed by `bin/photos`.
 - `fonts/` — self-hosted DM Sans (variable `opsz`+`wght`, latin subset, from the `@fontsource-variable/dm-sans` npm tarball) plus its OFL license; version-pinned filename like the vendored JS. No Google Fonts request.

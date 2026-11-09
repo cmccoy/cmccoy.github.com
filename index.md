@@ -25,3 +25,6 @@ Outside of work, I am married to the amazing [Cate](https://www.benaroyaresearch
 </div>
 <script type="application/json" id="photo-strip-data">{{ site.data.photos | jsonify }}</script>
 <script type="module" src="/js/photo-strip.js?v={{ site.time | date: '%s' }}"></script>
+
+<div class="ride-wall-backdrop" data-ride-wall="/assets/rides.json?v={{ site.time | date: '%s' }}"></div>
+<script type="module" src="/js/ride-wall.js?v={{ site.time | date: '%s' }}"></script>
