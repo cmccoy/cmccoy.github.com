@@ -28,6 +28,7 @@
   <main>
     <h1>{{ page.title | default: site.title }}</h1>
     {{ content }}
+    <footer class="site-footer">© {{ site.time | date: '%Y' }} Connor McCoy</footer>
   </main>
 </body>
 </html>
